@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+	</title>
+</head>
+<body>
+	<input type="hidden" id="test" value="toreplace">
+	<div class="hello">
+<script>
+	let length= 6;
+	let array=[];
+	for (let i=0; i<length; i++){
+		array.push(9);
+	}
+	console.log(array);
+
+
+$(()=>{
+
+	$("#test").val(array);
+	var toappend= $("#test").val();
+	$(".hello").append(toappend);
+
+})
+
+/*
+
+document.getElementById("test").value()=7 ;//not sure how to do value
+var toappend = documentgetElementById(test).value();
+document.getElementByClass(hello).appendChild(toappend);
+	
+*/
+
+
+
+</script>
+</body>
+
+
+
+</html>
