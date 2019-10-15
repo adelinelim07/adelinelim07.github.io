@@ -88,17 +88,15 @@ function plotAlert(quoteCurrency,datesArray,ratesArray) {
             if(change<0){
                 var momLine = `<tr><td>USD ${quoteCurrency[i]}</td><td style="color:red">${Number(change).toPrecision(2)}%</td></tr>`;
                 $('#alert-numbers').append(momLine);
-                alert(`USD ${quoteCurrency[i]} exceeded threshold!`);
+                setTimeout(function(){alert(`Depreciation of ${quoteCurrency[i]} against USD exceeded threshold of 0.5%!`);},100);
             }
             else{
                 var momLine = `<tr><td>USD ${quoteCurrency[i]}</td><td style="color:green">${Number(change).toPrecision(2)}%</td></tr>`;
                 $('#alert-numbers').append(momLine);
-                alert(`USD ${quoteCurrency[i]} exceeded threshold!`);
+                setTimeout(function(){alert(`Appreciation of ${quoteCurrency[i]} against USD exceeded threshold of 0.5%!`);},100);
             }
         }
-
     }
-    
 }
 
 
