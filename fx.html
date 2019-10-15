@@ -31,6 +31,7 @@
 						<label>Choose quote currency (base currency = USD): </label>
 							<select id="quote">
 								<option value>Select one... </option>
+								<option value="JPY">JPY</option>
 								<option value="EUR">EUR</option>
 								<option value="CNY">CNY</option>
 								<option value="GBP">GBP</option>
@@ -40,6 +41,9 @@
 								<option value="RUB">RUB</option>
 								<option value="KRW">KRW</option>
 								<option value="TRY">TRY</option>
+								<option value="BRL">BRL</option>
+								<option value="THB">THB</option>
+								<option value="MYR">MYR</option>
 							</select>
 							<button type="submit" id="submitCurrency">+</button>
 					</div>
@@ -63,9 +67,9 @@
 						<tr>
 							<th style="width:20vw">Currency</th>
 							<th style="width:25vw">Country/ Region</th>
-							<th style="width:35vw">Rate at Snapshot Date</th>
-							<th style="width:10vw">YoY%</th>
-							<th style="width:10vw">MoM%</th>
+							<th style="width:35vw" id="rate-column">Rate at Snapshot Date &#8593</th>
+							<th style="width:10vw" id="yoy-column">YoY% &#8595</th>
+							<th style="width:10vw" id="mom-column">MoM% &#8595</th>
 						</tr>
 					</thead>
 					<tbody id="fxTableBody">

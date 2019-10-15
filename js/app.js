@@ -74,6 +74,35 @@ function plotTable(quoteCurrency, rates) {
 }
 
 ///////////////////////////////////////////////////////////////////////////
+// FUNCTION TO TABULATE ALERTS
+///////////////////////////////////////////////////////////////////////////
+
+function plotAlert(quoteCurrency,datesArray,ratesArray) {
+    var change =0;
+
+    for (let i=0; i< quoteCurrency.length; i++){
+
+        change= ((ratesArray[i][datesArray.length-2]/ratesArray[i][datesArray.length-1])-1)*100;
+        
+        if(Math.abs(change)>0.5){
+            if(change<0){
+                var momLine = `<tr><td>USD ${quoteCurrency[i]}</td><td style="color:red">${Number(change).toPrecision(2)}%</td></tr>`;
+                $('#alert-numbers').append(momLine);
+                alert(`USD ${quoteCurrency[i]} exceeded threshold!`);
+            }
+            else{
+                var momLine = `<tr><td>USD ${quoteCurrency[i]}</td><td style="color:green">${Number(change).toPrecision(2)}%</td></tr>`;
+                $('#alert-numbers').append(momLine);
+                alert(`USD ${quoteCurrency[i]} exceeded threshold!`);
+            }
+        }
+
+    }
+    
+}
+
+
+///////////////////////////////////////////////////////////////////////////
 // SHOW HEADER
 ///////////////////////////////////////////////////////////////////////////
 var endDate = new Date(); //today's Date
@@ -92,10 +121,11 @@ $(() =>{
 let datesArray = []; 
 
 datesArray.push(convertDate(endDate));
-monthEnd = new Date(endDate.getFullYear(), endDate.getMonth(), 0);
+var monthAgoRate = new Date(endDate.getFullYear(), endDate.getMonth()-1, endDate.getDate());
+var chartDate = monthAgoRate;
 for (i=0; i<13; i++){
-    datesArray.push(convertDate(monthEnd));
-    monthEnd = new Date(monthEnd.getFullYear(), monthEnd.getMonth(), 0);
+    datesArray.push(convertDate(chartDate));
+    chartDate = new Date(chartDate.getFullYear(), chartDate.getMonth()-1, chartDate.getDate());
 
 }
 datesArray.reverse();
@@ -140,11 +170,11 @@ $(document).ajaxStop(function(){
         }
         ratesArray.push(singleRatesArray);
         singleRatesArray=[];
-        
         plotTable(quoteCurrency[i], ratesArray[i]);
     }
-    //console.log(ratesArray);
+    console.log(ratesArray[0][datesArray.length-1]);
     plotChart(quoteCurrency,datesArray,ratesArray,'fxChart');
+    plotAlert(quoteCurrency,datesArray,ratesArray);
 })
 
 ///////////////////////////////////////////////////////////////////////////
