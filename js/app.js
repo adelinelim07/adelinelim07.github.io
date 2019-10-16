@@ -100,6 +100,7 @@ function plotAlert(quoteCurrency,datesArray,ratesArray) {
 }
 
 
+
 ///////////////////////////////////////////////////////////////////////////
 // SHOW HEADER
 ///////////////////////////////////////////////////////////////////////////
@@ -139,7 +140,7 @@ function convertDate(rawDateFormat){
 ///////////////////////////////////////////////////////////////////////////
 // Src API: https://ratesapi.io/documentation/
 // date format on API: y-m-d
-var quoteCurrency = ["SGD","GBP","EUR","CNY"];
+var quoteCurrency = ["SGD","BRL","RUB","CNY","INR"];
 let rawRatesArray = [];
 let ratesArray = [];
 let singleRatesArray = [];
