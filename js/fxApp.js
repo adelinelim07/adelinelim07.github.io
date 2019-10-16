@@ -1,19 +1,5 @@
 
 ///////////////////////////////////////////////////////////////////////////
-// TOGGLE SIDE BAR                                                         
-///////////////////////////////////////////////////////////////////////////
-$(() => {
-    $("#mySidebar").mouseover(function(){
-        console.log("opening sidebar");
-        $(event.currentTarget).width("300px");
-    });
-    $("#mySidebar").mouseout(function(){
-        console.log("closing sidebar");
-        $(event.currentTarget).width("85px");
-    });
-})
-
-///////////////////////////////////////////////////////////////////////////
 // FUNCTION TO PLOT CHART                                                          
 ///////////////////////////////////////////////////////////////////////////
 function plotChart(label,x,y,chartID) {
@@ -76,10 +62,38 @@ function convertDate(rawDateFormat){
     return convertedDate;
 }
 
+function monthAgo(date){
+    var dateformat = new Date(date);
+    var datelastmonth = new Date(dateformat.getFullYear(), dateformat.getMonth()-1, dateformat.getDate());
+    return convertDate(datelastmonth);
+}
+
+function plotTable(rates) {
+    var fxLine = `<tr><td>USD SGD</td><td>${rates[rates.length-1]}</td></tr>`;
+    $('#fx-numbers').append(fxLine);
+}
+
+
+
+///////////////////////////////////////////////////////////////////////////
+// TOGGLE SIDE BAR                                                         
+///////////////////////////////////////////////////////////////////////////
+$(() => {
+    $("#mySidebar").mouseover(function(){
+        console.log("opening sidebar");
+        $(event.currentTarget).width("300px");
+    });
+    $("#mySidebar").mouseout(function(){
+        console.log("closing sidebar");
+        $(event.currentTarget).width("85px");
+    });
+
+
+
 ///////////////////////////////////////////////////////////////////////////
 // FUNCTION TO TABULATE ALL FX DATA
 ///////////////////////////////////////////////////////////////////////////
-$(()=>{
+
 
     $("#submitSnapshotDate").click(function(){
         event.preventDefault();
@@ -150,19 +164,9 @@ $(()=>{
         console.log(yoy);
         console.log(mom);
     });
-});
 
 
-function monthAgo(date){
-    var dateformat = new Date(date);
-    var datelastmonth = new Date(dateformat.getFullYear(), dateformat.getMonth()-1, dateformat.getDate());
-    return convertDate(datelastmonth);
-}
 
-function plotTable(rates) {
-    var fxLine = `<tr><td>USD SGD</td><td>${rates[rates.length-1]}</td></tr>`;
-    $('#fx-numbers').append(fxLine);
-}
 
 
 ///////////////////////////////////////////////////////////////////////////
@@ -171,9 +175,8 @@ function plotTable(rates) {
 // Src API: https://ratesapi.io/documentation/
 // date format on API: y-m-d
 
-var quoteCurrency= "";
+    var quoteCurrency= "";
 
-$(()=>{
     $("#submitCurrency").click(function(){
         event.preventDefault();
         $("canvas#fxChart").remove();
