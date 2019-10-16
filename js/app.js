@@ -1,19 +1,5 @@
 
 ///////////////////////////////////////////////////////////////////////////
-// TOGGLE SIDE BAR                                                         
-///////////////////////////////////////////////////////////////////////////
-$(() => {
-    $("#mySidebar").mouseover(function(){
-        console.log("opening sidebar");
-        $(event.currentTarget).width("300px");
-    });
-    $("#mySidebar").mouseout(function(){
-        console.log("closing sidebar");
-        $(event.currentTarget).width("85px");
-    });
-})
-
-///////////////////////////////////////////////////////////////////////////
 // FUNCTION TO PLOT CHART                                                          
 ///////////////////////////////////////////////////////////////////////////
 function plotChart(labelArray,x,yArray,chartID) {
@@ -88,12 +74,12 @@ function plotAlert(quoteCurrency,datesArray,ratesArray) {
             if(change<0){
                 var momLine = `<tr><td>USD ${quoteCurrency[i]}</td><td style="color:red">${Number(change).toPrecision(2)}%</td></tr>`;
                 $('#alert-numbers').append(momLine);
-                setTimeout(function(){alert(`Depreciation of ${quoteCurrency[i]} against USD exceeded threshold of 0.5%!`);},100);
+                setTimeout(function(){alert(`Depreciation of ${quoteCurrency[i]} against USD exceeded threshold of 0.5%!`);},1000);
             }
             else{
                 var momLine = `<tr><td>USD ${quoteCurrency[i]}</td><td style="color:green">${Number(change).toPrecision(2)}%</td></tr>`;
                 $('#alert-numbers').append(momLine);
-                setTimeout(function(){alert(`Appreciation of ${quoteCurrency[i]} against USD exceeded threshold of 0.5%!`);},100);
+                setTimeout(function(){alert(`Appreciation of ${quoteCurrency[i]} against USD exceeded threshold of 0.5%!`);},1000);
             }
         }
     }
@@ -102,21 +88,10 @@ function plotAlert(quoteCurrency,datesArray,ratesArray) {
 
 
 ///////////////////////////////////////////////////////////////////////////
-// SHOW HEADER
-///////////////////////////////////////////////////////////////////////////
-var endDate = new Date(); //today's Date
-
-$(() =>{
-    var options = { weekday: "long", year:"numeric" , month: "short", day: "numeric"};
-    var displayDate = endDate.toLocaleDateString("end-US",options);
-    $("#header").text(`Dashboard as at ${displayDate}`);
-    $("#header").css({'color':'rgb(255,255,255)'});
-})
-
-///////////////////////////////////////////////////////////////////////////
 // GET DATES INPUT
 ///////////////////////////////////////////////////////////////////////////
 //var startDate = document.getElementById("dateInput");
+var endDate = new Date(); //today's Date
 let datesArray = []; 
 
 datesArray.push(convertDate(endDate));
@@ -135,17 +110,38 @@ function convertDate(rawDateFormat){
     return convertedDate;
 }
 
+
+///////////////////////////////////////////////////////////////////////////
+// TOGGLE SIDE BAR                                                         
+///////////////////////////////////////////////////////////////////////////
+$(() => {
+    $("#mySidebar").mouseover(function(){
+        console.log("opening sidebar");
+        $(event.currentTarget).width("300px");
+    });
+    $("#mySidebar").mouseout(function(){
+        console.log("closing sidebar");
+        $(event.currentTarget).width("85px");
+    });
+
+
+///////////////////////////////////////////////////////////////////////////
+// SHOW HEADER
+///////////////////////////////////////////////////////////////////////////
+    var options = { weekday: "long", year:"numeric" , month: "short", day: "numeric"};
+    var displayDate = endDate.toLocaleDateString("end-US",options);
+    $("#header").text(`Dashboard as at ${displayDate}`);
+    $("#header").css({'color':'rgb(255,255,255)'});
+
 ///////////////////////////////////////////////////////////////////////////
 // GET FX API
 ///////////////////////////////////////////////////////////////////////////
 // Src API: https://ratesapi.io/documentation/
 // date format on API: y-m-d
-var quoteCurrency = ["SGD","BRL","RUB","CNY","INR"];
-let rawRatesArray = [];
-let ratesArray = [];
-let singleRatesArray = [];
-
-$(()=>{
+    var quoteCurrency = ["SGD","BRL","RUB","CNY","INR"];
+    let rawRatesArray = [];
+    let ratesArray = [];
+    let singleRatesArray = [];
 
     for (let i=0; i<datesArray.length; i++){
         $.ajax({
@@ -155,36 +151,31 @@ $(()=>{
             var rate = data['rates'];
             rawRatesArray.push(rate);
         })
-    }   
-})
-console.log(rawRatesArray);
+    } 
 
+    $(document).ajaxStop(function(){
+        for (let i=0; i<quoteCurrency.length; i++){
+            console.log(quoteCurrency[i]);
 
-$(document).ajaxStop(function(){
-    for (let i=0; i<quoteCurrency.length; i++){
-        console.log(quoteCurrency[i]);
-
-        for (let j=0; j<datesArray.length; j++){
-            singleRatesArray.push(rawRatesArray[j][quoteCurrency[i]]);
+            for (let j=0; j<datesArray.length; j++){
+                singleRatesArray.push(rawRatesArray[j][quoteCurrency[i]]);
+            }
+            ratesArray.push(singleRatesArray);
+            singleRatesArray=[];
+            plotTable(quoteCurrency[i], ratesArray[i]);
         }
-        ratesArray.push(singleRatesArray);
-        singleRatesArray=[];
-        plotTable(quoteCurrency[i], ratesArray[i]);
-    }
-    console.log(ratesArray[0][datesArray.length-1]);
-    plotChart(quoteCurrency,datesArray,ratesArray,'fxChart');
-    plotAlert(quoteCurrency,datesArray,ratesArray);
-})
+        console.log(ratesArray[0][datesArray.length-1]);
+        plotChart(quoteCurrency,datesArray,ratesArray,'fxChart');
+        plotAlert(quoteCurrency,datesArray,ratesArray);
+    })
+
 
 ///////////////////////////////////////////////////////////////////////////
 // GET NEWS API
 ///////////////////////////////////////////////////////////////////////////
 // Src API: https://newsapi.org/v2/everything?q=${topic}&apiKey=16eb9fb697714b3ca743394665a59dc2
-let newsTitleArray = [];
-var topic = "airlines";
-
-$(()=>{
-
+    let newsTitleArray = [];
+    var topic = "airlines";
     let urlWithNewsTopic = `https://newsapi.org/v2/everything?q=${topic}&sortBy=publishedAt&apiKey=16eb9fb697714b3ca743394665a59dc2`;
     
     $.ajax({
