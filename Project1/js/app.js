@@ -1,8 +1,8 @@
 
 ///////////////////////////////////////////////////////////////////////////
-// FUNCTION TO PLOT CHART                                                          
+// FUNCTION TO PLOT CHART FX                                                         
 ///////////////////////////////////////////////////////////////////////////
-function plotChart(labelArray,x,yArray,chartID) {
+function plotMultipleChart(labelArray,x,yArray,chartID) {
     var ctx = document.getElementById(chartID).getContext('2d');
     var dataset = [];
     for (let i=0; i<labelArray.length; i++){
@@ -51,11 +51,52 @@ function plotChart(labelArray,x,yArray,chartID) {
     });
 }
 
+
+///////////////////////////////////////////////////////////////////////////
+// FUNCTION TO PLOT Jet Fuel Chart                                                        
+///////////////////////////////////////////////////////////////////////////
+function plotChart(label,x,y,chartID) {
+    var ctx = document.getElementById(chartID).getContext('2d');
+
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'line',
+        // The data for our dataset
+        data: {
+            labels: x,
+            datasets: [{
+                data: y,
+                label: label,
+                borderColor: "black",
+                fill: false
+            }]
+
+
+        },
+        // Configuration options go here
+        options: {
+            legend:{
+                display: true,
+                fillStyle: Color,
+            },
+            elements: {
+                line: {
+                    tension:0
+                }
+            },
+            responsive: true,
+            maintainAspectRatio: false
+        }
+    });
+}
+
+
+
 ///////////////////////////////////////////////////////////////////////////
 // FUNCTION TO TABULATE DATA
 ///////////////////////////////////////////////////////////////////////////
 function plotTable(quoteCurrency, rates) {
-    var fxLine = `<tr><td>USD ${quoteCurrency}</td><td>${Number(rates[rates.length-1]).toPrecision(5)}</td></tr>`;
+    var fxLine = `<tr><td>USD ${quoteCurrency}</td><td>${Number(rates[rates.length-1]).toPrecision(4)}</td></tr>`;
     $('#fx-numbers').append(fxLine);
 }
 
@@ -110,6 +151,17 @@ function convertDate(rawDateFormat){
     return convertedDate;
 }
 
+function dateToYearMonthFormat(inputDate){
+    var month= inputDate.getMonth()+1;
+    console.log(month);
+
+    if (month<10){
+        month = '0'+month;
+    } 
+
+    var fuelDate = `${inputDate.getFullYear()}${month}`;
+    return fuelDate;
+}
 
 ///////////////////////////////////////////////////////////////////////////
 // TOGGLE SIDE BAR                                                         
@@ -153,6 +205,42 @@ $(() => {
         })
     } 
 
+    
+///////////////////////////////////////////////////////////////////////////
+// GET Jet Fuel API
+///////////////////////////////////////////////////////////////////////////
+// Src API: https://api.eia.gov/series/?api_key=8650106704abd018341b51cb15952349&series_id=STEO.JKTCUUS.M
+    let fuelRatesArray = [];
+    var fuelDate = dateToYearMonthFormat(endDate);
+    var dateAxis = [];
+    var fuelRatesAxis = [];
+    var indexFuelRateArray = 0;
+    var units = 0;
+    console.log(fuelDate);
+
+    $.ajax({
+        async: false,
+        url: `https://api.eia.gov/series/?api_key=8650106704abd018341b51cb15952349&series_id=STEO.JKTCUUS.M`
+    }). then(
+        (data)=>{
+            fuelRatesArray = data["series"][0]["data"];
+            units = data["series"][0]["units"];
+            console.log(units);
+            for(let i =0; i < fuelRatesArray.length; i++){
+                if(fuelRatesArray[i][0] === fuelDate){
+                    indexFuelRateArray = i;
+                }
+            }
+            for (let i=indexFuelRateArray; i < indexFuelRateArray + 24 ; i++){
+            dateAxis.push(`${fuelRatesArray[i][0].substring(0,4)}-${fuelRatesArray[i][0].substring(4,6)}`);
+            fuelRatesAxis.push(fuelRatesArray[i][1]);
+            }
+            dateAxis.reverse();
+            fuelRatesAxis.reverse();
+    })
+
+// load charts and data after ajax completed
+
     $(document).ajaxStop(function(){
         for (let i=0; i<quoteCurrency.length; i++){
             console.log(quoteCurrency[i]);
@@ -165,10 +253,10 @@ $(() => {
             plotTable(quoteCurrency[i], ratesArray[i]);
         }
         console.log(ratesArray[0][datesArray.length-1]);
-        plotChart(quoteCurrency,datesArray,ratesArray,'fxChart');
+        plotMultipleChart(quoteCurrency,datesArray,ratesArray,'fxChart');
         plotAlert(quoteCurrency,datesArray,ratesArray);
+        plotChart(`US ${units}`,dateAxis,fuelRatesAxis,'FuelChart');
     })
-
 
 ///////////////////////////////////////////////////////////////////////////
 // GET NEWS API

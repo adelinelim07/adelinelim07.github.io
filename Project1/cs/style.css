@@ -95,7 +95,7 @@ a {
 	flex-wrap: wrap;
 	flex-direction: row;
 	justify-content: space-around;
-	height: 90vh;
+	height: 135vh;
 }
 
 .container>*{
@@ -110,8 +110,12 @@ div[class$="box"] {
 	border-radius: 25px;
 }
 
+.Jetfuel-box{
+	margin: -0.6rem 0.5rem 0 0.5rem; /*top right bottom left*/
+}
+
 .News-box{
-	margin: -0.5rem 0.5rem 0 0.5rem; /*top right bottom left*/
+	margin: -0.6rem 0.5rem 0 0.5rem; /*top right bottom left*/
 }
 
 
@@ -148,6 +152,15 @@ div[class$="box"] {
 	margin: 0.8rem 0.8rem 0.2rem 0; /*top right bottom left*/
 	height: 32vh;
 	width: 72%;
+	border-radius: 10px;
+}
+
+.Fuel-chart-container{
+	background-color: rgba(255,255,255,0.6);
+	position: relative;
+	margin: auto;
+	height: 32vh;
+	width: 90%;
 	border-radius: 10px;
 }
 
