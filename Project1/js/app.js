@@ -1,8 +1,8 @@
 
 ///////////////////////////////////////////////////////////////////////////
-// FUNCTION TO PLOT CHART FX                                                         
+// FUNCTION TO PLOT CHART                                                      
 ///////////////////////////////////////////////////////////////////////////
-function plotMultipleChart(labelArray,x,yArray,chartID) {
+function plotChart(labelArray,x,yArray,chartID) {
     var ctx = document.getElementById(chartID).getContext('2d');
     var dataset = [];
     for (let i=0; i<labelArray.length; i++){
@@ -17,7 +17,7 @@ function plotMultipleChart(labelArray,x,yArray,chartID) {
 
     function dynamicColor(){
         var r = 0;
-        var g = Math.floor(Math.random() * (255-100) + 100);
+        var g = Math.floor(Math.random() * (255-128) + 128);
         var b = Math.floor(Math.random() * 255);
         return "rgb(" + r + "," + g + "," + b + ")"
     };
@@ -53,57 +53,17 @@ function plotMultipleChart(labelArray,x,yArray,chartID) {
 
 
 ///////////////////////////////////////////////////////////////////////////
-// FUNCTION TO PLOT Jet Fuel Chart                                                        
-///////////////////////////////////////////////////////////////////////////
-function plotChart(label,x,y,chartID) {
-    var ctx = document.getElementById(chartID).getContext('2d');
-
-    var chart = new Chart(ctx, {
-        // The type of chart we want to create
-        type: 'line',
-        // The data for our dataset
-        data: {
-            labels: x,
-            datasets: [{
-                data: y,
-                label: label,
-                borderColor: "black",
-                fill: false
-            }]
-
-
-        },
-        // Configuration options go here
-        options: {
-            legend:{
-                display: true,
-                fillStyle: Color,
-            },
-            elements: {
-                line: {
-                    tension:0
-                }
-            },
-            responsive: true,
-            maintainAspectRatio: false
-        }
-    });
-}
-
-
-
-///////////////////////////////////////////////////////////////////////////
 // FUNCTION TO TABULATE DATA
 ///////////////////////////////////////////////////////////////////////////
+/*
 function plotTable(quoteCurrency, rates) {
     var fxLine = `<tr><td>USD ${quoteCurrency}</td><td>${Number(rates[rates.length-1]).toPrecision(4)}</td></tr>`;
     $('#fx-numbers').append(fxLine);
-}
+}*/
 
 ///////////////////////////////////////////////////////////////////////////
 // FUNCTION TO TABULATE ALERTS
 ///////////////////////////////////////////////////////////////////////////
-
 function plotAlert(quoteCurrency,datesArray,ratesArray) {
     var change =0;
 
@@ -111,13 +71,18 @@ function plotAlert(quoteCurrency,datesArray,ratesArray) {
 
         change= ((ratesArray[i][datesArray.length-2]/ratesArray[i][datesArray.length-1])-1)*100;
         
-        if(Math.abs(change)>0.5){
-            if(change<0){
+        if(change<0){
+            var fxLine = `<tr><td>USD ${quoteCurrency[i]}</td><td>${Number(ratesArray[i][ratesArray.length-1]).toPrecision(3)}</td><td style="color:red">&#9660</td></tr>`;
+            $('#fx-numbers').append(fxLine);
+            if (change <-0.5){
                 var momLine = `<tr><td>USD ${quoteCurrency[i]}</td><td style="color:red">${Number(change).toPrecision(2)}%</td></tr>`;
                 $('#alert-numbers').append(momLine);
                 setTimeout(function(){alert(`Depreciation of ${quoteCurrency[i]} against USD exceeded threshold of 0.5%!`);},1000);
             }
-            else{
+        } else {
+            var fxLine = `<tr><td>USD ${quoteCurrency[i]}</td><td>${Number(ratesArray[i][ratesArray.length-1]).toPrecision(3)}</td><td style="color:green">&#9650</td></tr>`;
+            $('#fx-numbers').append(fxLine);
+            if (change>0.5){
                 var momLine = `<tr><td>USD ${quoteCurrency[i]}</td><td style="color:green">${Number(change).toPrecision(2)}%</td></tr>`;
                 $('#alert-numbers').append(momLine);
                 setTimeout(function(){alert(`Appreciation of ${quoteCurrency[i]} against USD exceeded threshold of 0.5%!`);},1000);
@@ -125,7 +90,6 @@ function plotAlert(quoteCurrency,datesArray,ratesArray) {
         }
     }
 }
-
 
 
 ///////////////////////////////////////////////////////////////////////////
@@ -210,6 +174,7 @@ $(() => {
 // GET Jet Fuel API
 ///////////////////////////////////////////////////////////////////////////
 // Src API: https://api.eia.gov/series/?api_key=8650106704abd018341b51cb15952349&series_id=STEO.JKTCUUS.M
+// https://www.eia.gov/opendata/qb.php?sdid=STEO.JKTCUUS.M
     let fuelRatesArray = [];
     var fuelDate = dateToYearMonthFormat(endDate);
     var dateAxis = [];
@@ -250,12 +215,11 @@ $(() => {
             }
             ratesArray.push(singleRatesArray);
             singleRatesArray=[];
-            plotTable(quoteCurrency[i], ratesArray[i]);
         }
         console.log(ratesArray[0][datesArray.length-1]);
-        plotMultipleChart(quoteCurrency,datesArray,ratesArray,'fxChart');
+        plotChart(quoteCurrency,datesArray,ratesArray,'fxChart');
         plotAlert(quoteCurrency,datesArray,ratesArray);
-        plotChart(`US ${units}`,dateAxis,fuelRatesAxis,'FuelChart');
+        plotChart([`US ${units}`],dateAxis,[fuelRatesAxis],'FuelChart');
     })
 
 ///////////////////////////////////////////////////////////////////////////
@@ -276,12 +240,10 @@ $(() => {
             for (article of articlesArray){
                 var title = article['title'];
                 var link = article['url'];
-                //newsTitleArray.push(title);
                 $('#News-lines').append(`<a href="${link}"><li>${title}</li></a>`);
-                
-            }  
+            }
+              
     })
-
 })
     
 
