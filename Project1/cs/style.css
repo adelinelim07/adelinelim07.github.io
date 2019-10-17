@@ -99,15 +99,21 @@ a {
 }
 
 .container>*{
-	width: 90%;
+	width: 93%;
 	height: 40vh;
-	margin: 1rem;
+	margin: 1.5rem 0.5rem 0 0.5rem; /*top right bottom left*/
 }
+
 
 div[class$="box"] {
 	background-color: rgba(247,255,254,0.7);
 	border-radius: 25px;
 }
+
+.News-box{
+	margin: -0.5rem 0.5rem 0 0.5rem; /*top right bottom left*/
+}
+
 
 .News-list{
 	height: 80%;
@@ -120,7 +126,7 @@ div[class$="box"] {
 	margin: auto;
 	float: left;
 	width: 24%;
-	margin: 0.5rem 0 0.2rem 0.1rem;
+	margin: 0.5rem 0 0.2rem 0.1rem; /*top right bottom left*/
 }
 
 #fx-numbers, #fxtablelabel, #alert-numbers {
@@ -139,7 +145,7 @@ div[class$="box"] {
 	position: relative;
 	margin: auto;
 	float: right;
-	margin: 0.5rem 0.8rem 0.2rem 0; /*top right bottom left*/
+	margin: 0.8rem 0.8rem 0.2rem 0; /*top right bottom left*/
 	height: 32vh;
 	width: 72%;
 	border-radius: 10px;
