@@ -1,4 +1,5 @@
-**Objective**
+#Project 1
+##Objective
 1. Create a dashboard which is useful and part of my daily work
 2. Aircraft leasing business 
    - largely USD based
@@ -8,23 +9,23 @@
    	 	- need to monitor news closely for developments (crashes etc)
 <br/>
 <br/>
-**Explanations of the technologies used**
+##Explanations of the technologies used**
 1. Use AJAX data request to extract FX rates/ Jet fuel prices/ news and put them into array
 2. Use Chart Js to plot charts
 3. CSS display grid 
 <br/>
 <br/>
-**The approach taken**
+##The approach taken
 1. Came up with wireframe of dashboard page I intended to have
 2. Listed specs and functions I wanted 
 <br/>
 <br/>
-**Difficulties**
+##Difficulties
 1. Simple CSS like freezing table header took a long time
 2. Chart was not appearing as chart was called before ajax calls were completed
 <br/>
 <br/>
-**Unsolved problems or future work**
+##Unsolved problems or future work**
 1. Improve AJAX data request (currently asynchronous) speed
 2. Ability to add more charts in FX page for comparison
 3. Ability to export data on my page
