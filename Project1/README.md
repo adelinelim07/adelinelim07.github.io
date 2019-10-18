@@ -7,18 +7,25 @@ Objective
    	 	- largest cost typically jet fuel (depending if they hedge)
    	 	- need to monitor news closely for developments (crashes etc)
 
+
 Explanations of the technologies used
 1. Use AJAX data request to extract FX rates/ Jet fuel prices/ news and put them into array
 2. Use Chart Js to plot charts
 3. CSS display grid 
 
+
+
 The approach taken
 1. Came up with wireframe of dashboard page I intended to have
 2. Listed specs and functions I wanted 
 
+
+
 Difficulties
 1. Simple CSS like freezing table header took a long time
-2. 
+2. Chart was not appearing as chart was called before ajax calls were completed
+
+
 
 Unsolved problems or future work
 1. Improve AJAX data request (currently asynchronous) speed
