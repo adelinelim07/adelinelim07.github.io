@@ -34,7 +34,7 @@
 
 
 
-## Unsolved problems or future work**
+## Unsolved problems or future work
 1. Improve AJAX data request (currently asynchronous) speed
 2. Ability to add more charts in FX page for comparison
 3. Ability to export data on my page
