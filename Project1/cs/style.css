@@ -102,7 +102,7 @@ https://www.smashingmagazine.com/2016/11/css-grids-flexbox-box-alignment-new-lay
 
 	display: grid;
 	grid-template-columns: 5px 1fr 1fr 1fr 5px;
-	grid-template-rows: 5px 1fr 1fr 1fr 1fr 1fr 5px;
+	grid-template-rows: 3px 1fr 1fr 1fr 1fr 1fr 5px;
 	grid-gap: 20px;
 	justify-content: space-around;
 	height: 94vh;
