@@ -53,15 +53,6 @@ function plotChart(labelArray,x,yArray,chartID) {
 
 
 ///////////////////////////////////////////////////////////////////////////
-// FUNCTION TO TABULATE DATA
-///////////////////////////////////////////////////////////////////////////
-/*
-function plotTable(quoteCurrency, rates) {
-    var fxLine = `<tr><td>USD ${quoteCurrency}</td><td>${Number(rates[rates.length-1]).toPrecision(4)}</td></tr>`;
-    $('#fx-numbers').append(fxLine);
-}*/
-
-///////////////////////////////////////////////////////////////////////////
 // FUNCTION TO TABULATE ALERTS
 ///////////////////////////////////////////////////////////////////////////
 function plotAlert(quoteCurrency,datesArray,ratesArray) {
@@ -72,18 +63,18 @@ function plotAlert(quoteCurrency,datesArray,ratesArray) {
         change= ((ratesArray[i][datesArray.length-2]/ratesArray[i][datesArray.length-1])-1)*100;
         
         if(change<0){
-            var fxLine = `<tr><td>USD ${quoteCurrency[i]}</td><td>${Number(ratesArray[i][ratesArray.length-1]).toPrecision(3)}</td><td style="color:red">&#9660</td></tr>`;
+            var fxLine = `<tr><td>${quoteCurrency[i]}</td><td>${Number(ratesArray[i][ratesArray.length-1]).toPrecision(3)}</td><td style="color:red">&#9660</td></tr>`;
             $('#fx-numbers').append(fxLine);
             if (change <-0.5){
-                var momLine = `<tr><td>USD ${quoteCurrency[i]}</td><td style="color:red">${Number(change).toPrecision(2)}%</td></tr>`;
+                var momLine = `<tr><td>${quoteCurrency[i]}</td><td style="color:red">${Number(change).toPrecision(2)}%</td></tr>`;
                 $('#alert-numbers').append(momLine);
                 setTimeout(function(){alert(`Depreciation of ${quoteCurrency[i]} against USD exceeded threshold of 0.5%!`);},1000);
             }
         } else {
-            var fxLine = `<tr><td>USD ${quoteCurrency[i]}</td><td>${Number(ratesArray[i][ratesArray.length-1]).toPrecision(3)}</td><td style="color:green">&#9650</td></tr>`;
+            var fxLine = `<tr><td>${quoteCurrency[i]}</td><td>${Number(ratesArray[i][ratesArray.length-1]).toPrecision(3)}</td><td style="color:green">&#9650</td></tr>`;
             $('#fx-numbers').append(fxLine);
             if (change>0.5){
-                var momLine = `<tr><td>USD ${quoteCurrency[i]}</td><td style="color:green">${Number(change).toPrecision(2)}%</td></tr>`;
+                var momLine = `<tr><td>${quoteCurrency[i]}</td><td style="color:green">${Number(change).toPrecision(2)}%</td></tr>`;
                 $('#alert-numbers').append(momLine);
                 setTimeout(function(){alert(`Appreciation of ${quoteCurrency[i]} against USD exceeded threshold of 0.5%!`);},1000);
             }

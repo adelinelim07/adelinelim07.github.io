@@ -2,6 +2,11 @@ html {
 	font-size: calc(0.58em + 0.58vw);
 }
 
+html, body {
+	margin: 0; 
+	padding: 0;
+}
+
 * {
 	font-family: 'Montserrat', sans-serif;
 }
@@ -71,14 +76,14 @@ a {
 
 .Header-banner {
 	text-align: center;
-	margin-left: 85px;
+	margin-left: 80px;
 	margin-bottom: 0;
-	padding: 0;
+	padding: 5px;
 	background-color: rgba(50,56,110,1);
 }
 
 .Header-banner h1{
-	margin: 10px; /*space between header and dashboard container*/
+	margin: 0px; /*space between header and dashboard container*/
 }
 
 h1{
@@ -88,17 +93,17 @@ h1{
 
 /*container for boxes in dashboard*/
 .container {
-	margin-left: 85px;
+	margin-left: 80px;
 	display:flex;
 	background-image: url("https://images.theconversation.com/files/172470/original/file-20170606-3698-c0rfrt.jpg?ixlib=rb-1.1.0&rect=0%2C336%2C5760%2C2793&q=45&auto=format&w=1356&h=668&fit=crop%22"), linear-gradient(rgba(235,240,245,0.8),rgba(235,240,245,0.8));
 	background-position: left;
 	background-size: cover;
 	background-blend-mode: overlay;
-	border-radius: 20px;
+
 	flex-wrap: wrap;
 	flex-direction: row;
 	justify-content: space-around;
-	height: 90vh;
+	height: 94vh;
 }
 
 .inputs {

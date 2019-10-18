@@ -2,6 +2,11 @@ html {
 	font-size: calc(0.58em + 0.58vw);
 }
 
+html, body {
+	margin: 0; 
+	padding: 0;
+}
+
 * {
 	font-family: 'Montserrat', sans-serif;
 }
@@ -71,39 +76,37 @@ a {
 
 .Header-banner {
 	text-align: center;
-	margin-left: 85px;
-	margin-bottom: 0;
-	padding: 0;
+	margin-top: 0;
+	margin-left: 80px;  /*top right bottom left*/
+	padding: 5px;
 	background-color: rgba(50,56,110,1);
 }
 
+
 .Header-banner h1{
-	margin: 10px; /*space between header and dashboard container*/
+	margin: 0; /*space between header and dashboard container*/
 }
 
 
-/*container for boxes in dashboard*/
+
+/*container for boxes in dashboard
+https://www.smashingmagazine.com/2016/11/css-grids-flexbox-box-alignment-new-layout-standard/
+*/
 .container {
-	margin-left: 85px;
+	margin-left: 80px;
 	margin-top: 0;
-	display:flex;
-	background-image: url("https://images.theconversation.com/files/172470/original/file-20170606-3698-c0rfrt.jpg?ixlib=rb-1.1.0&rect=0%2C336%2C5760%2C2793&q=45&auto=format&w=1356&h=668&fit=crop%22"), linear-gradient(rgba(235,240,245,0.8),rgba(235,240,245,0.8));
+	background-image: url("https://images.theconversation.com/files/172470/original/file-20170606-3698-c0rfrt.jpg?ixlib=rb-1.1.0&rect=0%2C336%2C5760%2C2793&q=45&auto=format&w=1356&h=668&fit=crop%22"), linear-gradient(rgba(6,78,150,0.2),rgba(6,78,150,0.2));
 	background-position: left;
 	background-size: cover;
 	background-blend-mode: overlay;
-	border-radius: 20px;
-	flex-wrap: wrap;
-	flex-direction: row;
+
+	display: grid;
+	grid-template-columns: 5px 1fr 1fr 1fr 5px;
+	grid-template-rows: 5px 1fr 1fr 1fr 1fr 1fr 5px;
+	grid-gap: 20px;
 	justify-content: space-around;
-	height: 135vh;
+	height: 94vh;
 }
-
-.container>*{
-	width: 93%;
-	height: 40vh;
-	margin: 1.5rem 0.5rem 0 0.5rem; /*top right bottom left*/
-}
-
 
 div[class$="box"] {
 	background-color: rgba(247,255,254,0.7);
@@ -111,17 +114,26 @@ div[class$="box"] {
 }
 
 .Jetfuel-box{
-	margin: -0.6rem 0.5rem 0 0.5rem; /*top right bottom left*/
+	grid-column: 2 / 4 ;
+	grid-row: 2 / 4;
+}
+
+.FX-box{
+	grid-column: 2 / 4;
+	grid-row: 4 / 7;
 }
 
 .News-box{
-	margin: -0.6rem 0.5rem 0 0.5rem; /*top right bottom left*/
+	grid-column: 4;
+	grid-row: 2 / 7;
+	margin: 0; /*top right bottom left*/
+	float: right;
 }
 
 
 .News-list{
-	height: 80%;
-	width: 95%;
+	height: 90%;
+	width: 90%;
 	overflow: auto;
 }
 
@@ -145,21 +157,22 @@ div[class$="box"] {
 
 
 .chart-container{
-	background-color: rgba(255,255,255,0.6);
+	background-color: rgba(255,255,255,0.4);
 	position: relative;
 	margin: auto;
 	float: right;
-	margin: 0.8rem 0.8rem 0.2rem 0; /*top right bottom left*/
-	height: 32vh;
+	margin: 0.8rem 1rem 1rem 0; /*top right bottom left*/
+	height: 80%;
 	width: 72%;
 	border-radius: 10px;
 }
 
 .Fuel-chart-container{
-	background-color: rgba(255,255,255,0.6);
+	background-color: rgba(255,255,255,0.4);
 	position: relative;
 	margin: auto;
-	height: 32vh;
+	margin-bottom: 5%;
+	height: 80%;
 	width: 90%;
 	border-radius: 10px;
 }
