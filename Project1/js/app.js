@@ -108,7 +108,6 @@ function convertDate(rawDateFormat){
 
 function dateToYearMonthFormat(inputDate){
     var month= inputDate.getMonth()+1;
-    console.log(month);
 
     if (month<10){
         month = '0'+month;
@@ -167,6 +166,8 @@ $(() => {
             //check all ajax called
             if(i==(datesArray.length -1)){
                 //sort ajax data in right order required
+                console.log(rawDataArray);
+                
                 for (let i=0; i<rawDataArray.length; i++){
                     requiredDataArray.push({"rates":rawDataArray[i]["rates"], "date": convertStringToDate(rawDataArray[i]["date"])});
                 }
@@ -203,7 +204,6 @@ $(() => {
     var fuelRatesAxis = [];
     var indexFuelRateArray = 0;
     var units = 0;
-    console.log(fuelDate);
 
     $.ajax({
         //async: false,
@@ -224,6 +224,7 @@ $(() => {
             }
             dateAxis.reverse();
             fuelRatesAxis.reverse();
+            console.log(fuelRatesAxis);
             plotChart([`US ${units}`],dateAxis,[fuelRatesAxis],'FuelChart');
     })
 
