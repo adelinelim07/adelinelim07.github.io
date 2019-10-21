@@ -118,6 +118,11 @@ function dateToYearMonthFormat(inputDate){
     return fuelDate;
 }
 
+function convertStringToDate(inputDate){
+    var dateFormat = new Date (inputDate);
+    return dateFormat;
+}
+
 ///////////////////////////////////////////////////////////////////////////
 // TOGGLE SIDE BAR                                                         
 ///////////////////////////////////////////////////////////////////////////
@@ -146,18 +151,44 @@ $(() => {
 // Src API: https://ratesapi.io/documentation/
 // date format on API: y-m-d
     var quoteCurrency = ["SGD","BRL","RUB","CNY","INR"];
-    let rawRatesArray = [];
+    let rawDataArray = [];
+    let requiredDataArray = [];
     let ratesArray = [];
     let singleRatesArray = [];
 
     for (let i=0; i<datesArray.length; i++){
         $.ajax({
-            async: false,
+       //     async: false,
             url: `https://api.ratesapi.io/api/${datesArray[i]}?base=USD`
         }).then((data)=> {
-            var rate = data['rates'];
-            rawRatesArray.push(rate);
+            var rawData = data;
+            rawDataArray.push(rawData);
+
+            //check all ajax called
+            if(i==(datesArray.length -1)){
+                //sort ajax data in right order required
+                for (let i=0; i<rawDataArray.length; i++){
+                    requiredDataArray.push({"rates":rawDataArray[i]["rates"], "date": convertStringToDate(rawDataArray[i]["date"])});
+                }
+                requiredDataArray.sort(function(a,b){
+                    var dateA = new Date(a.date), dateB = new Date(b.date);
+                    return dateA - dateB;
+                });
+                //put ajax data into arrays for plotting
+                for (let i=0; i<quoteCurrency.length; i++){
+
+                    for (let j=0; j<datesArray.length; j++){
+                        singleRatesArray.push(requiredDataArray[j]["rates"][quoteCurrency[i]]);
+                    }
+                    ratesArray.push(singleRatesArray);
+                    singleRatesArray=[];
+                }
+                console.log(ratesArray);
+                plotChart(quoteCurrency,datesArray,ratesArray,'fxChart');
+                plotAlert(quoteCurrency,datesArray,ratesArray);
+            }
         })
+
     } 
 
     
@@ -175,7 +206,7 @@ $(() => {
     console.log(fuelDate);
 
     $.ajax({
-        async: false,
+        //async: false,
         url: `https://api.eia.gov/series/?api_key=8650106704abd018341b51cb15952349&series_id=STEO.JKTCUUS.M`
     }). then(
         (data)=>{
@@ -193,25 +224,9 @@ $(() => {
             }
             dateAxis.reverse();
             fuelRatesAxis.reverse();
+            plotChart([`US ${units}`],dateAxis,[fuelRatesAxis],'FuelChart');
     })
 
-// load charts and data after ajax completed
-
-    $(document).ajaxStop(function(){
-        for (let i=0; i<quoteCurrency.length; i++){
-            console.log(quoteCurrency[i]);
-
-            for (let j=0; j<datesArray.length; j++){
-                singleRatesArray.push(rawRatesArray[j][quoteCurrency[i]]);
-            }
-            ratesArray.push(singleRatesArray);
-            singleRatesArray=[];
-        }
-        console.log(ratesArray[0][datesArray.length-1]);
-        plotChart(quoteCurrency,datesArray,ratesArray,'fxChart');
-        plotAlert(quoteCurrency,datesArray,ratesArray);
-        plotChart([`US ${units}`],dateAxis,[fuelRatesAxis],'FuelChart');
-    })
 
 ///////////////////////////////////////////////////////////////////////////
 // GET NEWS API
@@ -226,7 +241,6 @@ $(() => {
     }).then(
         (data)=>{
             var articlesArray = data['articles'];
-            console.log(articlesArray);
 
             for (article of articlesArray){
                 var title = article['title'];
