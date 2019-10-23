@@ -164,7 +164,7 @@ $(() => {
             rawDataArray.push(rawData);
 
             //check all ajax called
-            if(i==(datesArray.length -1)){
+            if(rawDataArray.length===datesArray.length){
                 //sort ajax data in right order required
                 console.log(rawDataArray);
                 
