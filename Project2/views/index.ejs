@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Aircraft Portfolio</title>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="main.css" />
+        <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+	    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <!--guide to google icons: https://materializecss.com/icons.html-->
+    </head>
+    <body>
+        <!--nav bar ------->
+	    <div id="mySidebar" class="sidebar">
+            <a href="./index.html"><span><i class="material-icons">home</i><span class="icon-text">Home</span></a><br>
+            <a href="./fx.html"><i class="material-icons">euro_symbol</i><span class="icon-text"></span>Foreign Exchange</a></span></a><br>
+            <a href="/portfolio"><i class="material-icons">airplanemode_active</i><span class="icon-text"></span>Aircraft Portfolio</a></span></a><br>
+  
+        </div>
+        <!--end of nav bar-->
+
+        <!--header-->
+        <div class="Header-banner">
+            <h1 id="header">Aircraft Portfolio</h1>
+        </div>
+        <!--end of header-->
+        
+        <!--start of dashboard page-->
+        <div class="container">
+
+        <!--portfolio table-->
+            <div class="portfolio-box">
+                <table id="allAircraftTable" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th style="width:12vw"><a href="/portfolio/new">MSN +</a></th>
+                            <th style="width:25vw">Operator</th>
+                            <th style="width:20vw">Status</th>
+                            <th style="width:20vw">Sub Status</th>
+                            <th colspan="2" style="width:30vw">Action</th>
+                        
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <% for (let i=0; i < aircraft.length; i++){ %>
+                        <tr>
+                            <td style="width:15vw"><a href="/portfolio/<%=aircraft[i].id%>"><%=aircraft[i].msn%></a></td>
+                            <td style="width:30vw"><%=aircraft[i].lease.operator%></td>
+                            <td style="width:25vw"><%=aircraft[i].lease.status%></td>
+                            <td style="width:20vw"><%=aircraft[i].lease.sub_status%></td>
+                            <td style="width:5vw"><a href="/portfolio/<%=aircraft[i].id%>/edit" class="button"><i class="material-icons">edit</i></a></td>
+                            <td style="width:5vw">
+                                <form action="/portfolio/<%=aircraft[i].id%>?_method=DELETE" method="POST">
+                                    <button type="submit" class="deletebutton" style="border:none; background-color:Transparent" ><i class="material-icons">delete</i></button> 
+                                </form>
+                            </td>
+                        </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+                
+            </div>
+            <!--piechart-->
+            <div class="aircraftType-box">
+                <h2>Portfolio by Aircraft Type</h2></br>
+                <div class="aircraftType-chartContainer">
+                    <canvas id="aircraftTypeChart">
+                    </canvas>
+                </div>
+                <p>Total Aircraft: <%=aircraft.length%></p>
+            </div>
+
+            <div class="aircraftAge-box">
+                <h2>Portfolio by Aircraft Age</h2></br>
+                <div class="aircraftAge-chartContainer">
+                    <canvas id="aircraftAgeChart">
+                    </canvas>
+                </div>
+               
+            </div>
+            
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+        <script src="all.js"></script>
+        
+        <script type="text/javascript">
+        let allData = <%-JSON.stringify(aircraft)%>;
+        let total = allData.length;
+        console.log(typeof(allData[0].msn));
+        console.log(allData[0].aircraft.aircraft_model);
+
+        //Delivered + Committed aircraftt type piechart
+        var aircraftType = {};
+        //map database into object of key value : summation
+        allData.forEach(function(x,i){
+            aircraftType[x.aircraft.aircraft_model] = (aircraftType[x.aircraft.aircraft_model] || 0) + parseInt(allData[i].msn);
+        });
+        console.log(aircraftType);
+        //generate pie chart
+        plotPieChart(Object.values(aircraftType),Object.keys(aircraftType),'aircraftTypeChart');
+
+        var asAtDate = new Date();
+        var aircraftAge ={};
+        //figure out formula for difference between dates
+        allData.forEach(function(x,i){
+            aircraftAge[x.aircraft.manufactured_date] = (aircraftAge[x.aircraft.manufactured_date] || 0)  
+
+        });
+        plotBarChart([1,2,3,4],["a","b","c","d"],'aircraftAgeChart');
+        
+
+
+        </script>
+    </body>
+</html>
