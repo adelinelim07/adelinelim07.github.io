@@ -3,12 +3,18 @@
 ///////////////////////////////////////////////////////////////////////////
 function plotPieChart(inputDataArray,labelsArray,canvasID){
     var ctx = document.getElementById(canvasID).getContext('2d');
+    var backgroundArray = [];
+    var borderArray = [];
+    for (let i = 0; i <inputDataArray.length; i++){
+        backgroundArray.push(dynamicColor());
+        borderArray.push('black');
+    };
     var data = {
         datasets: [{
             data: inputDataArray,
             fill: true,
-            backgroundColor: [dynamicColor(),dynamicColor(),dynamicColor()],
-            borderColor: ['black','black','black'],
+            backgroundColor: backgroundArray,
+            borderColor: borderArray,
             borderWidth: 0.5
 
         }],
@@ -86,6 +92,19 @@ function plotBarChart(inputDataArray,labelsArray,canvasID){
 
 }
 
+///////////////////////////////////////////////////////////////////////////
+// FUNCTION TO CALCULATE AGE                                                   
+///////////////////////////////////////////////////////////////////////////
+function calculateAge(inputMnfDate) {
+    var today = new Date();
+    var mnfDate = new Date(inputMnfDate);
+    var months;
+    months = (today.getFullYear() - mnfDate.getFullYear()) * 12;
+    months -= mnfDate.getMonth() + 1;
+    months += today.getMonth();
+    var age = Math.round(months/12);
+    return age;
+}
 
 ///////////////////////////////////////////////////////////////////////////
 // TOGGLE SIDE BAR                                                         
@@ -99,10 +118,4 @@ $(() => {
         console.log("closing sidebar");
         $(event.currentTarget).width("85px");
     });
-///////////////////////////////////////////////////////////////////////////
-// Activate plot chart                                                      
-///////////////////////////////////////////////////////////////////////////
- //   plotPieChart([1,2,3],'aircraftTypeChart');
-
-
-});
+})

@@ -34,6 +34,9 @@ const aircraftSchema = new Schema({
         obligor_country: String,
         rating: { type: Number, minimum: 1, maximum: 9 },
     },
+    accounting: {
+        nbv: Number
+    }
   }, {timestamps: true});
 
 

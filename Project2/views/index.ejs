@@ -63,7 +63,8 @@
             </div>
             <!--piechart-->
             <div class="aircraftType-box">
-                <h2>Portfolio by Aircraft Type</h2></br>
+                <h2>Portfolio by Aircraft Type</h2>
+                <p style="text-align:center">by NBV(US$m)</p></br>
                 <div class="aircraftType-chartContainer">
                     <canvas id="aircraftTypeChart">
                     </canvas>
@@ -72,7 +73,8 @@
             </div>
 
             <div class="aircraftAge-box">
-                <h2>Portfolio by Aircraft Age</h2></br>
+                <h2>Portfolio by Aircraft Age</h2>
+                <p style="text-align:center">by number of aircraft</p></br>
                 <div class="aircraftAge-chartContainer">
                     <canvas id="aircraftAgeChart">
                     </canvas>
@@ -95,20 +97,29 @@
         var aircraftType = {};
         //map database into object of key value : summation
         allData.forEach(function(x,i){
-            aircraftType[x.aircraft.aircraft_model] = (aircraftType[x.aircraft.aircraft_model] || 0) + parseInt(allData[i].msn);
+            //sumif formula ---- sum nbv for each key value
+            aircraftType[x.aircraft.aircraft_model] = (aircraftType[x.aircraft.aircraft_model] || 0) + parseInt(allData[i].accounting.nbv/1000000);
         });
         console.log(aircraftType);
         //generate pie chart
         plotPieChart(Object.values(aircraftType),Object.keys(aircraftType),'aircraftTypeChart');
 
-        var asAtDate = new Date();
-        var aircraftAge ={};
-        //figure out formula for difference between dates
-        allData.forEach(function(x,i){
-            aircraftAge[x.aircraft.manufactured_date] = (aircraftAge[x.aircraft.manufactured_date] || 0)  
+        //var testDate = new Date ("December 1 2015");
+        //console.log(calculateAge(testDate));
+        
+        for (let i=0; i< allData.length; i++){
+            allData[i].age= calculateAge(allData[i].aircraft.manufactured_date);
+        };
 
-        });
-        plotBarChart([1,2,3,4],["a","b","c","d"],'aircraftAgeChart');
+        var aircraftAge ={};
+        allData.forEach(function(x){
+            aircraftAge[(x.age)] = (aircraftAge[x.age] || 0)  + 1;
+        });        
+        console.log(aircraftAge);
+        plotBarChart(Object.values(aircraftAge),Object.keys(aircraftAge),'aircraftAgeChart');
+
+
+        
         
 
 

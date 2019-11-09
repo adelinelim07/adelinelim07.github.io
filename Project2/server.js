@@ -26,6 +26,15 @@ db.on('error', (err) => console.log(err.message + ' is Mongod not running?'))
 db.on('connected', () => console.log('mongo connected: ', mongoURI))
 db.on('disconnected', () => console.log('mongo disconnected'))
 
+//seeding data
+/*
+Portfolio.create(PortfolioSeed, (err,data)=>{
+    if (err) console.log(err.message);
+    console.log('added seed data');
+
+});*/
+
+
 //Get Route
 app.get('/portfolio', (req, res)=>{
     Portfolio.find({},(error,allAircraft)=>{
