@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const methodOverride = require('method-override');
 
 const portfolioController = require('./controllers/portfolio.js');
-const userController = require('./controllers/users.js')
+//const userController = require('./controllers/users.js')
 const app = express();
 
 //middleware
@@ -12,7 +12,7 @@ app.use(express.urlencoded({extended:false}));
 
 //use controllers and routes
 app.use('/portfolio',portfolioController);
-app.use('/users', userController)
+//app.use('/users', userController)
 app.use(express.static('public'));
 
 // Config
