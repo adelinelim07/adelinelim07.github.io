@@ -11,7 +11,6 @@ const PortfolioSeed = require('../models/seed.js');
 Portfolio.create(PortfolioSeed, (err,data)=>{
     if (err) console.log(err.message);
     console.log('added seed data');
-
 });*/
 
 
