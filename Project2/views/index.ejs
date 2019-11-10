@@ -29,15 +29,15 @@
         <div class="container">
 
         <!--portfolio table-->
-            <div class="portfolio-box">
+            <div class="portfolioTable-box">
                 <table id="allAircraftTable" style="width:100%">
                     <thead>
                         <tr>
-                            <th style="width:12vw"><a href="/portfolio/new">MSN +</a></th>
-                            <th style="width:25vw">Operator</th>
-                            <th style="width:20vw">Status</th>
-                            <th style="width:20vw">Sub Status</th>
-                            <th colspan="2" style="width:30vw">Action</th>
+                            <th style= "width:100px"><a href="/portfolio/new">MSN +</a></th>
+                            <th style= "width:180px">Operator</th>
+                            <th style= "width:120px">Status</th>
+                            <th style= "width:120px">Sub Status</th>
+                            <th colspan="2">Action</div></th>
                         
                         </tr>
                     </thead>
@@ -45,12 +45,12 @@
 
                         <% for (let i=0; i < aircraft.length; i++){ %>
                         <tr>
-                            <td style="width:15vw"><a href="/portfolio/<%=aircraft[i].id%>"><%=aircraft[i].msn%></a></td>
-                            <td style="width:30vw"><%=aircraft[i].lease.operator%></td>
-                            <td style="width:25vw"><%=aircraft[i].lease.status%></td>
-                            <td style="width:20vw"><%=aircraft[i].lease.sub_status%></td>
-                            <td style="width:5vw"><a href="/portfolio/<%=aircraft[i].id%>/edit" class="button"><i class="material-icons">edit</i></a></td>
-                            <td style="width:5vw">
+                            <td style= "width:100px"><a href="/portfolio/<%=aircraft[i].id%>"><%=aircraft[i].msn%></a></td>
+                            <td style= "width:180px"><%=aircraft[i].lease.operator%></td>
+                            <td style= "width:120px"><%=aircraft[i].lease.status%></td>
+                            <td style= "width:120px"><%=aircraft[i].lease.sub_status%></td>
+                            <td><a href="/portfolio/<%=aircraft[i].id%>/edit" class="button"><i class="material-icons">edit</i></a></td>
+                            <td>
                                 <form action="/portfolio/<%=aircraft[i].id%>?_method=DELETE" method="POST">
                                     <button type="submit" class="deletebutton" style="border:none; background-color:Transparent" ><i class="material-icons">delete</i></button> 
                                 </form>
@@ -81,7 +81,8 @@
                 </div>
                
             </div>
-            
+
+        
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
@@ -116,7 +117,31 @@
             aircraftAge[(x.age)] = (aircraftAge[x.age] || 0)  + 1;
         });        
         console.log(aircraftAge);
-        plotBarChart(Object.values(aircraftAge),Object.keys(aircraftAge),'aircraftAgeChart');
+
+        var existingAgeArray = Object.keys(aircraftAge).map(function (x) { 
+            return parseInt(x, 10); 
+        });
+
+        console.log(existingAgeArray);
+        console.log(Math.max(...existingAgeArray));
+
+        var aircraftAgeX = [];
+        var maxAge = Math.max(...existingAgeArray);
+        var aircraftAgeY = Array(maxAge).fill(0);
+
+
+        for (let i=0; i<= maxAge; i++) {
+            aircraftAgeX.push(i);
+            for (let j=0; j<= existingAgeArray.length; j++){
+                if(existingAgeArray[j]===i){
+                    aircraftAgeY[i]=(Object.values(aircraftAge)[j])
+                } 
+            }
+            
+        }
+        console.log(aircraftAgeX);
+        console.log(aircraftAgeY);
+        plotBarChart(aircraftAgeY,aircraftAgeX,'aircraftAgeChart');
 
 
         

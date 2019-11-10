@@ -28,7 +28,8 @@ function plotPieChart(inputDataArray,labelsArray,canvasID){
             legend: {
                 position: 'left'
             },
-            cutoutPercentage: 30
+            cutoutPercentage: 30,
+            maintainAspectRatio: false
         }
     });
 
@@ -61,6 +62,7 @@ function plotBarChart(inputDataArray,labelsArray,canvasID){
         legend: {
             display: false
         },
+        maintainAspectRatio: false,
         scales: {
             yAxes: [{
                 display: true,

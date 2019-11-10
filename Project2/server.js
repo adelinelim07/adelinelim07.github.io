@@ -1,17 +1,18 @@
+//dependencies
 const express = require('express');
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
-
-const portfolioController = require('./controllers/portfolio.js');
-//const userController = require('./controllers/users.js')
-const app = express();
+require('dotenv').config()
+const app = express()
 
 //middleware
 app.use(methodOverride('_method'));
 app.use(express.urlencoded({extended:false}));
 
 //use controllers and routes
+const portfolioController = require('./controllers/portfolio.js');
 app.use('/portfolio',portfolioController);
+//const userController = require('./controllers/users.js');
 //app.use('/users', userController)
 app.use(express.static('public'));
 
@@ -27,6 +28,14 @@ mongoose.connection.once('open', () => {
 	console.log('connected to mongo');
 });
 
+// Welcome route
+/*
+app.get('/', (req, res) => {
+    res.render('index.ejs', {
+      currentUser: req.session.currentUser
+    })
+  })
+*/
 
 app.listen(3000, ()=>{
     console.log('listening');
