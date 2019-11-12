@@ -1,20 +1,19 @@
 //dependencies
 const express = require('express');
-const mongoose = require('mongoose');
+//const session = require('express-session');
 const methodOverride = require('method-override');
+const mongoose = require('mongoose');
 require('dotenv').config()
 const app = express()
 
 //middleware
 app.use(methodOverride('_method'));
 app.use(express.urlencoded({extended:false}));
-
-//use controllers and routes
-const portfolioController = require('./controllers/portfolio.js');
-app.use('/portfolio',portfolioController);
-//const userController = require('./controllers/users.js');
-//app.use('/users', userController)
-app.use(express.static('public'));
+// app.use(session({
+//   secret: process.env.SECRET,
+//   resave: false,
+//   saveUninitialized: false
+// }))
 
 // Config
 const mongoURI = 'mongodb://localhost:27017/portfolio';
@@ -27,6 +26,19 @@ mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true }, 
 mongoose.connection.once('open', () => {
 	console.log('connected to mongo');
 });
+
+//use controllers and routes
+const portfolioController = require('./controllers/portfolio.js');
+app.use('/portfolio',portfolioController);
+
+// const userController = require('./controllers/users.js');
+// app.use('/users', userController);
+
+// const sessionsController = require('./controllers/sessions.js')
+// app.use('/sessions', sessionsController);
+
+app.use(express.static('public'));
+
 
 // Welcome route
 /*
