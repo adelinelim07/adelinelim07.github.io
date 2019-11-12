@@ -15,17 +15,15 @@ app.use(express.urlencoded({extended:false}));
 //   saveUninitialized: false
 // }))
 
-// Config
-const mongoURI = 'mongodb://localhost:27017/portfolio';
+// Configuration
+const PORT = process.env.PORT
+const mongoURI = process.env.MONGODB_URI
 
-// Connect to Mongo
-mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true }, () => { 
-    console.log('Mongo running at', mongoURI)
-});
-// Error / success
+// Database
+mongoose.connect(mongoURI, { useNewUrlParser: true })
 mongoose.connection.once('open', () => {
-	console.log('connected to mongo');
-});
+  console.log('connected to mongo')
+})
 
 //use controllers and routes
 const portfolioController = require('./controllers/portfolio.js');
@@ -49,6 +47,5 @@ app.get('/', (req, res) => {
   })
 */
 
-app.listen(3000, ()=>{
-    console.log('listening');
-});
+// Listen
+app.listen(PORT, () => console.log('auth happening on port', PORT))
