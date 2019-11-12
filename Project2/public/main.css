@@ -130,7 +130,7 @@ div[class$="box"] {
 }
 
 .aircraftAge-chartContainer {
-	width: 90%;
+	width: 98%;
 	height: 80%
 }
 
@@ -141,7 +141,7 @@ div[class$="box"] {
 	margin: auto;
 	margin-top: 1px;
 	border-spacing: 0;
-	height: 80%;
+	height: 92%;
 	table-layout: fixed;
 }
 
