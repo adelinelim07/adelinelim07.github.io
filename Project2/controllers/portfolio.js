@@ -18,7 +18,8 @@ Portfolio.create(PortfolioSeed, (err,data)=>{
 router.get('/', (req, res)=>{
     Portfolio.find({},(error,allAircraft)=>{
         res.render('index.ejs',{
-            aircraft: allAircraft
+            aircraft: allAircraft,
+            currentUser: req.session.currentUser
         });
     });
 });

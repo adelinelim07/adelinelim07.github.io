@@ -83,12 +83,23 @@ a {
 	background-color: rgba(50,56,110,1);
 }
 
-
 .Header-banner h1{
     color: white;
 	margin: 0; /*space between header and dashboard container*/
 }
 
+.login {
+	position: relative;
+	top: -25px;
+	margin-left: 90px;  /*top right bottom left*/
+	margin-bottom: -20px;
+}
+
+.login a {
+	text-decoration: none;
+	color: rgb(218, 218, 218);
+	margin-left: 10px;
+}
 
 
 /*container for boxes in dashboard
@@ -103,8 +114,8 @@ https://www.smashingmagazine.com/2016/11/css-grids-flexbox-box-alignment-new-lay
 	background-blend-mode: overlay;
 	display: grid;
 	grid-template-columns: 5px 1fr 1fr 1fr 5px;
-	grid-template-rows: 3px 1fr 1.5fr 5px;
-	grid-gap: 20px;
+	grid-template-rows: 1px 1fr 1.5fr 5px;
+	grid-gap: 10px;
 	justify-content: space-around;
 	height: 94vh;
 }

@@ -1,6 +1,6 @@
 //dependencies
 const express = require('express');
-//const session = require('express-session');
+const session = require('express-session');
 const methodOverride = require('method-override');
 const mongoose = require('mongoose');
 require('dotenv').config()
@@ -9,11 +9,12 @@ const app = express()
 //middleware
 app.use(methodOverride('_method'));
 app.use(express.urlencoded({extended:false}));
-// app.use(session({
-//   secret: process.env.SECRET,
-//   resave: false,
-//   saveUninitialized: false
-// }))
+
+app.use(session({
+  secret: process.env.SECRET,
+  resave: false,
+  saveUninitialized: false
+}))
 
 // Configuration
 const PORT = process.env.PORT
@@ -29,23 +30,21 @@ mongoose.connection.once('open', () => {
 const portfolioController = require('./controllers/portfolio.js');
 app.use('/portfolio',portfolioController);
 
-// const userController = require('./controllers/users.js');
-// app.use('/users', userController);
+const userController = require('./controllers/users.js');
+app.use('/users', userController);
 
-// const sessionsController = require('./controllers/sessions.js')
-// app.use('/sessions', sessionsController);
+const sessionsController = require('./controllers/sessions.js')
+app.use('/sessions', sessionsController);
 
 app.use(express.static('public'));
 
-
-// Welcome route
-/*
-app.get('/', (req, res) => {
-    res.render('index.ejs', {
+//routes
+app.get('/portfolio', (req, res) => {
+  res.render('index.ejs', {
       currentUser: req.session.currentUser
-    })
   })
-*/
+})
+
 
 // Listen
 app.listen(PORT, () => console.log('auth happening on port', PORT))

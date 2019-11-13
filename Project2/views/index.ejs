@@ -23,11 +23,23 @@
         <div class="Header-banner">
             <h1 id="header">Aircraft Portfolio</h1>
         </div>
+        <!--login area-->
+        <div class="login">
+            <% if(currentUser) { %>
+            Welcome <%=currentUser.username%>!
+            <form action="/sessions?_method=DELETE" method="POST">
+                <input type="submit" value="Logout" />
+            </form>
+            <% } else { %>
+                <a href="/users/new" style="margin-right: 20px">Sign Up</a>
+                <a href="/sessions/new">Log In</a>
+            <% } %>
+        </div>
         <!--end of header-->
         
         <!--start of dashboard page-->
         <div class="container">
-
+        
         <!--portfolio table-->
             <div class="portfolioTable-box">
                 <table id="allAircraftTable" style="width:100%">
@@ -82,7 +94,6 @@
                
             </div>
 
-        
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
