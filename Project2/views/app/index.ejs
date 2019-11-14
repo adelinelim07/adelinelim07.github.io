@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <title>Aircraft Portfolio</title>
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="main.css" />
+        <link rel="stylesheet" href="../main.css" />
         <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 	    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <!--guide to google icons: https://materializecss.com/icons.html-->
@@ -45,11 +45,11 @@
                 <table id="allAircraftTable" style="width:100%">
                     <thead>
                         <tr>
-                            <th style= "width:120px">MSN</th>
+                            <th style= "width:120px"><a href="/portfolio/new">MSN +</a></th>
                             <th style= "width:280px">Operator</th>
                             <th style= "width:190px">Status</th>
                             <th style= "width:190px">Sub Status</th>
-                            
+                            <th colspan="2">Action</div></th>
                         
                         </tr>
                     </thead>
@@ -61,7 +61,12 @@
                             <td style= "width:280px"><%=aircraft[i].lease.operator%></td>
                             <td style= "width:190px"><%=aircraft[i].lease.status%></td>
                             <td style= "width:190px"><%=aircraft[i].lease.sub_status%></td>
-                            
+                            <td><a href="/portfolio/<%=aircraft[i].id%>/edit" class="button"><i class="material-icons">edit</i></a></td>
+                            <td>
+                                <form action="/portfolio/<%=aircraft[i].id%>?_method=DELETE" method="POST">
+                                    <button type="submit" class="deletebutton" style="border:none; background-color:Transparent" ><i class="material-icons">delete</i></button> 
+                                </form>
+                            </td>
                         </tr>
                         <% } %>
                     </tbody>
@@ -92,7 +97,7 @@
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-        <script src="all.js"></script>
+        <script src="../all.js"></script>
         
         <script type="text/javascript">
         let allData = <%-JSON.stringify(aircraft)%>;

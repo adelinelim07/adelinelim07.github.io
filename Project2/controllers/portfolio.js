@@ -24,19 +24,28 @@ router.get('/', (req, res)=>{
     });
 });
 
+router.get('/signedin', (req, res)=>{
+    Portfolio.find({},(error,allAircraft)=>{
+        res.render('app/index.ejs',{
+            aircraft: allAircraft,
+            currentUser: req.session.currentUser
+        });
+    });
+});
+
 router.get('/new', (req, res)=>{
     res.render('new.ejs');
 });
 
 router.post('/', (req, res)=>{
     Portfolio.create(req.body, (error, createdAircraft)=>{
-       res.redirect('/portfolio'); 
+       res.redirect('/portfolio/signedin'); 
     });
 });
 
 router.delete('/:id', (req, res)=>{
     Portfolio.findByIdAndRemove(req.params.id, (err, data)=>{
-        res.redirect('/portfolio');//redirect back to main portfolio page
+        res.redirect('/portfolio/signedin');//redirect back to main portfolio page
     });
 });
 
@@ -61,7 +70,7 @@ router.get('/:id', (req, res)=>{
 
 router.put('/:id', (req, res)=>{
     Portfolio.findByIdAndUpdate(req.params.id, req.body, (err, updatedModel)=>{
-        res.redirect('/portfolio');
+        res.redirect('/portfolio/signedin');
     });
 });
 

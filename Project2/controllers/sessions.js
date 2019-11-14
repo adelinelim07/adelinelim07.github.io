@@ -19,7 +19,7 @@ sessions.post('/', (req, res) => {
       }else {
         if(bcrypt.compareSync(req.body.password, foundUser.password)) {
           req.session.currentUser = foundUser
-          res.redirect('/portfolio')
+          res.redirect('/portfolio/signedin')
           // if passwords don't match, handle the error
         } else {
           res.send('<a href="/portfolio">wrong password</a>')

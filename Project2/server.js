@@ -10,6 +10,14 @@ const app = express()
 app.use(methodOverride('_method'));
 app.use(express.urlencoded({extended:false}));
 
+const isAuthenticated = (req, res, next) => {
+  if (req.session.currentUser) {
+    return next()
+  } else {
+    res.redirect('/sessions/new')
+  }
+}
+
 app.use(session({
   secret: process.env.SECRET,
   resave: false,
@@ -45,6 +53,11 @@ app.get('/portfolio', (req, res) => {
   })
 })
 
+app.get('/portfolio/signedin', isAuthenticated, (req, res)=>{
+  res.render('app/index.ejs', {
+    currentUser: req.session.currentUser
+  })
+})
 
 // Listen
 app.listen(PORT, () => console.log('auth happening on port', PORT))
