@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <h1>New Lessee page</h1>
+        <form action="/lessee" method="POST">
+            Name: <input type="string" name="name" id="name" /><br/>
+            Country: <input type="string" name="country" id="country" /><br/>
+            Credit Rating: <input type="number" name="credit_rating" id="credit_rating" /><br/>
+            
+
+            <br/>
+            <br/>
+            <input type="submit" name="" value="Create Lessee"/>
+        </form>
+    </body>
+</html>
+
+<!--
+    lease: {
+    
+        lease_start: Date,
+        lease_end: Date,
+        IRR: Number,
+        operator: String, 
+        country_operator: String,
+        country_registration: String, 
+        rent: Number, 
+        security_deposit: Number
+    },
+    obligor: {
+        obligor_name: String,
+        obligor_country: String,
+        rating: { type: Number, minimum: 1, maximum: 9 },
+    },
+  }, {timestamps: true});
+
+  -->

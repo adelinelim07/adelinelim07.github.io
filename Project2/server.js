@@ -44,6 +44,9 @@ app.use('/users', userController);
 const sessionsController = require('./controllers/sessions.js')
 app.use('/sessions', sessionsController);
 
+const lesseeController = require('./controllers/lessee.js')
+app.use('/lessee', lesseeController);
+
 app.use(express.static('public'));
 
 //routes

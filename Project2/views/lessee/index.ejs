@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <% include ../partials/head.ejs %>
+    </head>
+    <body>
+        <% include ../partials/navbar.ejs %>
+
+        <!--header-->
+        <div class="Header-banner">
+            <h1 id="header">Lessees</h1>
+        </div>
+        <!--end of header-->
+        
+        <!--start of dashboard page-->
+        <div class="container">
+        
+        <!--lessee table-->
+            <div class="portfolioTable-box">
+                <table id="allAircraftTable" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th style= "width:120px"><a href="/lessee/new">Lessee +</a></th>
+                            <th style= "width:280px">Country</th>
+                            <th style= "width:190px">Credit Rating</th>
+                            <th style= "width:190px">Number of Aircraft</th>
+                            <th colspan="2">Action</div></th>
+                            
+                        
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <% for (let i=0; i < lessee.length; i++){ %>
+                        <tr>
+                            <td style= "width:120px"><a href="/lessee/<%=lessee[i].id%>"><%=lessee[i].name%></a></td>
+                            <td style= "width:280px"><%=lessee[i].country%></td>
+                            <td style= "width:190px"><%=lessee[i].credit_rating%></td>
+                            <td style= "width:190px"></td>
+                            <td><a href="/lessee/<%=lessee[i].id%>/edit" class="button"><i class="material-icons">edit</i></a></td>
+                            <td>
+                                <form action="/lessee/<%=lessee[i].id%>?_method=DELETE" method="POST">
+                                    <button type="submit" class="deletebutton" style="border:none; background-color:Transparent" ><i class="material-icons">delete</i></button> 
+                                </form>
+                            </td>
+                            
+                        </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+                
+            </div>
+            
+
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+        <script src="all.js"></script>
+        
+    </body>
+</html>
