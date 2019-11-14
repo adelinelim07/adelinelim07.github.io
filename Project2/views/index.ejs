@@ -26,9 +26,9 @@
         <!--login area-->
         <div class="login">
             <% if(currentUser) { %>
-            Welcome <%=currentUser.username%>!
+            <p>Welcome <%=currentUser.username%>!</p>
             <form action="/sessions?_method=DELETE" method="POST">
-                <input type="submit" value="Logout" />
+                <button type="submit" style="border:none; background-color:Transparent; color:rgb(218, 218, 218)" ><i class="material-icons" style="font-size:16px">exit_to_app</i></button> 
             </form>
             <% } else { %>
                 <a href="/users/new" style="margin-right: 20px">Sign Up</a>
@@ -45,10 +45,10 @@
                 <table id="allAircraftTable" style="width:100%">
                     <thead>
                         <tr>
-                            <th style= "width:100px"><a href="/portfolio/new">MSN +</a></th>
-                            <th style= "width:180px">Operator</th>
-                            <th style= "width:120px">Status</th>
-                            <th style= "width:120px">Sub Status</th>
+                            <th style= "width:120px"><a href="/portfolio/new">MSN +</a></th>
+                            <th style= "width:280px">Operator</th>
+                            <th style= "width:190px">Status</th>
+                            <th style= "width:190px">Sub Status</th>
                             <th colspan="2">Action</div></th>
                         
                         </tr>
@@ -57,10 +57,10 @@
 
                         <% for (let i=0; i < aircraft.length; i++){ %>
                         <tr>
-                            <td style= "width:100px"><a href="/portfolio/<%=aircraft[i].id%>"><%=aircraft[i].msn%></a></td>
-                            <td style= "width:180px"><%=aircraft[i].lease.operator%></td>
-                            <td style= "width:120px"><%=aircraft[i].lease.status%></td>
-                            <td style= "width:120px"><%=aircraft[i].lease.sub_status%></td>
+                            <td style= "width:120px"><a href="/portfolio/<%=aircraft[i].id%>"><%=aircraft[i].msn%></a></td>
+                            <td style= "width:280px"><%=aircraft[i].lease.operator%></td>
+                            <td style= "width:190px"><%=aircraft[i].lease.status%></td>
+                            <td style= "width:190px"><%=aircraft[i].lease.sub_status%></td>
                             <td><a href="/portfolio/<%=aircraft[i].id%>/edit" class="button"><i class="material-icons">edit</i></a></td>
                             <td>
                                 <form action="/portfolio/<%=aircraft[i].id%>?_method=DELETE" method="POST">

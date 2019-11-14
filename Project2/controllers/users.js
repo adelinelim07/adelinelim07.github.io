@@ -18,7 +18,7 @@ users.post('/' , (req, res) => {
     }
     console.log(createdUser);
     // once user is created redirect back to 'welcome page'
-    res.redirect('/')
+    res.redirect('/portfolio')
   })
 })
 

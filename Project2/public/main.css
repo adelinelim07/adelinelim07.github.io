@@ -79,7 +79,7 @@ a {
     text-align: center;
 	margin-top: 0;
 	margin-left: 80px;  /*top right bottom left*/
-	padding: 5px;
+	padding: 10px;
 	background-color: rgba(50,56,110,1);
 }
 
@@ -90,9 +90,14 @@ a {
 
 .login {
 	position: relative;
-	top: -25px;
+	top: -30px;
 	margin-left: 90px;  /*top right bottom left*/
-	margin-bottom: -20px;
+	margin-bottom: -25px;
+	color: rgb(218, 218, 218);
+}
+
+.login p, form {
+	display: inline-block;
 }
 
 .login a {
@@ -100,6 +105,13 @@ a {
 	color: rgb(218, 218, 218);
 	margin-left: 10px;
 }
+
+.login button {
+	position: relative;
+	cursor:pointer;
+	top: -2px
+}
+
 
 
 /*container for boxes in dashboard
