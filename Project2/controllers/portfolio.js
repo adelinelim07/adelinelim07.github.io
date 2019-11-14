@@ -34,7 +34,7 @@ router.get('/signedin', (req, res)=>{
 });
 
 router.get('/new', (req, res)=>{
-    res.render('new.ejs');
+    res.render('portfolio/new.ejs');
 });
 
 router.post('/', (req, res)=>{
@@ -52,7 +52,7 @@ router.delete('/:id', (req, res)=>{
 router.get('/:id/edit', (req, res)=>{
     Portfolio.findById(req.params.id, (err, foundAircraft)=>{ //find aircraft
         res.render(
-    		'edit.ejs',
+    		'portfolio/edit.ejs',
     		{
     			aircraft: foundAircraft //pass in found aircraft
     		}
@@ -62,7 +62,7 @@ router.get('/:id/edit', (req, res)=>{
 
 router.get('/:id', (req, res)=>{
     Portfolio.findById(req.params.id, (err, foundAircraft)=>{
-        res.render('show.ejs', {
+        res.render('portfolio/show.ejs', {
             aircraft: foundAircraft
         });
     });

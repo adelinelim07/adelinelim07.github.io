@@ -20,20 +20,8 @@ const aircraftSchema = new Schema({
     lease: {
         status: { type: String, enum: ['Delivered','Committed','Sold']},
         sub_status: { type: String, enum: ['Delivered','LOI Sales','SPA Signed','LOI','LA Signed','Sold']},
-        lease_start: Date,
-        lease_end: Date,
-        IRR: Number,
-        operator: String, 
-        country_operator: String,
-        country_registration: String, 
-        rent: Number, 
-        security_deposit: Number
     },
-    obligor: {
-        obligor_name: String,
-        obligor_country: String,
-        rating: { type: Number, minimum: 1, maximum: 9 },
-    },
+    lessee: { type: Schema.Types.ObjectId, ref:"Lessee" },
     accounting: {
         nbv: Number
     }
