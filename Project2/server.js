@@ -47,8 +47,14 @@ app.use('/sessions', sessionsController);
 app.use(express.static('public'));
 
 //routes
+app.get('/account', (req, res) => {
+  res.render('account/index.ejs', {
+    currentUser: req.session.currentUser
+  })
+})
+
 app.get('/portfolio', (req, res) => {
-  res.render('index.ejs', {
+  res.render('/portfolio/index.ejs', {
       currentUser: req.session.currentUser
   })
 })

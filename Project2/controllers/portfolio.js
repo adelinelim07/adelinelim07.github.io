@@ -17,7 +17,7 @@ Portfolio.create(PortfolioSeed, (err,data)=>{
 //Get Route
 router.get('/', (req, res)=>{
     Portfolio.find({},(error,allAircraft)=>{
-        res.render('index.ejs',{
+        res.render('portfolio/index.ejs',{
             aircraft: allAircraft,
             currentUser: req.session.currentUser
         });

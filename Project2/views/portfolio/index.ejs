@@ -1,27 +1,14 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <% include ./partials/head.ejs %>
-    <!--guide to google icons: https://materializecss.com/icons.html-->
+        <% include ../partials/head.ejs %>
     </head>
     <body>
-        <% include ./partials/navbar.ejs %>
+        <% include ../partials/navbar.ejs %>
 
         <!--header-->
         <div class="Header-banner">
             <h1 id="header">Aircraft Portfolio</h1>
-        </div>
-        <!--login area-->
-        <div class="login">
-            <% if(currentUser) { %>
-            <p>Welcome <%=currentUser.username%>!</p>
-            <form action="/sessions?_method=DELETE" method="POST">
-                <button type="submit" style="border:none; background-color:Transparent; color:rgb(218, 218, 218)" ><i class="material-icons" style="font-size:16px">exit_to_app</i></button> 
-            </form>
-            <% } else { %>
-                <a href="/users/new" style="margin-right: 20px">Sign Up</a>
-                <a href="/sessions/new">Log In</a>
-            <% } %>
         </div>
         <!--end of header-->
         

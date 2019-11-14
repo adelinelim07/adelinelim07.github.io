@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <% include ../partials/head.ejs %>
+    </head>
+    <body>
+        <% include ../partials/navbar.ejs %>
+
+        <!--header-->
+        <div class="Header-banner">
+            <h1 id="header">Account</h1>
+        </div>
+        
+        <!--end of header-->
+        
+        <!--start of dashboard page-->
+        <div class="container">
+            <!--login area-->
+            <div class="login-area">
+                <% if(currentUser) { %>
+                <p>Welcome <%=currentUser.username%>!</p>
+                <form action="/sessions?_method=DELETE" method="POST">
+                    <button type="submit" style="border:none; background-color:Transparent"><i
+                            class="material-icons" style="font-size:16px">exit_to_app</i></button>
+                </form>
+                <% } else { %>
+                <a href="/users/new" style="margin-right: 20px">Sign Up</a>
+                <a href="/sessions/new">Log In</a>
+                <% } %>
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+        <script src="all.js"></script>
+        
+    </body>
+</html>
