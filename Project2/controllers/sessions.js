@@ -19,10 +19,10 @@ sessions.post('/', (req, res) => {
       }else {
         if(bcrypt.compareSync(req.body.password, foundUser.password)) {
           req.session.currentUser = foundUser
-          res.redirect('/portfolio/signedin')
+          res.redirect('/aircraft/signedin')
           // if passwords don't match, handle the error
         } else {
-          res.send('<a href="/portfolio">wrong password</a>')
+          res.send('<a href="/aircraft">wrong password</a>')
         }
       }
     })
@@ -30,7 +30,7 @@ sessions.post('/', (req, res) => {
 
 sessions.delete('/', (req, res)=>{
     req.session.destroy(() => {
-        res.redirect('/portfolio')
+        res.redirect('/aircraft')
     })
 })
 

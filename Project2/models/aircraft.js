@@ -32,7 +32,7 @@ const aircraftSchema = new Schema({
 // An instance of a model is called a document.
 // Models are responsible for creating and reading documents from the underlying MongoDB Database
 // from here: https://mongoosejs.com/docs/models.html
-const Portfolio = mongoose.model('Portfolio', aircraftSchema);
+const Aircraft = mongoose.model('Aircraft', aircraftSchema);
 
 //make this exportable to be accessed in `app.js`
-module.exports = Portfolio;
+module.exports = Aircraft;

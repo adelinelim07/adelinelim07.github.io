@@ -10,14 +10,6 @@ const app = express()
 app.use(methodOverride('_method'));
 app.use(express.urlencoded({extended:false}));
 
-const isAuthenticated = (req, res, next) => {
-  if (req.session.currentUser) {
-    return next()
-  } else {
-    res.redirect('/sessions/new')
-  }
-}
-
 app.use(session({
   secret: process.env.SECRET,
   resave: false,
@@ -35,8 +27,8 @@ mongoose.connection.once('open', () => {
 })
 
 //use controllers and routes
-const portfolioController = require('./controllers/portfolio.js');
-app.use('/portfolio',portfolioController);
+const aircraftController = require('./controllers/aircraft.js');
+app.use('/aircraft',aircraftController);
 
 const userController = require('./controllers/users.js');
 app.use('/users', userController);
@@ -56,15 +48,9 @@ app.get('/account', (req, res) => {
   })
 })
 
-app.get('/portfolio', (req, res) => {
-  res.render('/portfolio/index.ejs', {
+app.get('/aircraft', (req, res) => {
+  res.render('/aircraft/index.ejs', {
       currentUser: req.session.currentUser
-  })
-})
-
-app.get('/portfolio/signedin', isAuthenticated, (req, res)=>{
-  res.render('app/index.ejs', {
-    currentUser: req.session.currentUser
   })
 })
 

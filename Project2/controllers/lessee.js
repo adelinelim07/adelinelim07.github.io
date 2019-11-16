@@ -2,13 +2,46 @@ const express = require("express");
 const router = express.Router();
 const Lessee = require("../models/lessee.js");
 
-router.get("/", (req, res) => {
-  Lessee.find({}, (err, foundLessee) => {
-    res.render("lessee/index.ejs", {
-      lessee: foundLessee
-    });
+const isAuthenticated = (req, res, next) => {
+  if (req.session.currentUser) {
+    return next()
+  } else {
+    res.redirect('/lessee')
+  }
+}
+
+//Get Route
+router.get('/', (req, res)=>{
+  Lessee.find()
+      .populate("aircraft")
+      .exec((error,allLessee)=>{
+          if (error) console.error(err.message);
+
+          if(allLessee){
+              res.render('lessee/index.ejs',{
+                  lessee: allLessee,
+                  currentUser: req.session.currentUser
+          });
+      }
   });
 });
+
+
+router.get('/signedin', isAuthenticated, (req, res)=>{
+  Lessee.find()
+      .populate("aircraft")
+      .exec((error,allLessee)=>{
+          if (error) console.error(err.message);
+
+          if(allLessee){
+              res.render('lessee/signedin.ejs',{
+                  lessee: allLessee,
+                  currentUser: req.session.currentUser
+          });
+      }
+  });
+});
+
 
 router.get("/new", (req, res) => {
   res.render("lessee/new.ejs");

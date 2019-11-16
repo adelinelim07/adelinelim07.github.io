@@ -6,7 +6,7 @@
     </head>
     <body>
         <h1>New Aircraft page</h1>
-        <form action="/portfolio" method="POST">
+        <form action="/aircraft" method="POST">
             MSN: <input type="number" name="msn" id="msn" /><br/>
             <!--Aircraft-->
             Aircraft Model: <select name="aircraft.aircraft_model" id="aircraft.aircraft_model">
@@ -42,9 +42,12 @@
                 <option value="LA Signed">LA Signed</option>
                 <option value="Sold">Sold</option>
             </select><br/>
-            Operator: <input type="string" name="lease.operator" id="lease.operator" /><br/>
+            Lessee: <select name="lessee" id="lessee" />
+                <% for (let i=0; i < lessees.length; i++ ) { %>
+                    <option value="<%=lessees[i]._id%>"><%=lessees[i].name%></option>
+                <% } %>
+            </select><br/>
             NBV: <input type="number" name="accounting.nbv" id="accounting.nbv"/><br/>
-            
             <br/>
             <br/>
             <input type="submit" name="" value="Create Aircraft"/>

@@ -21,7 +21,7 @@
                     <thead>
                         <tr>
                             <th style= "width:120px">MSN</th>
-                            <th style= "width:280px">Operator</th>
+                            <th style= "width:280px">Lessee</th>
                             <th style= "width:190px">Status</th>
                             <th style= "width:190px">Sub Status</th>
                             
@@ -32,8 +32,10 @@
 
                         <% for (let i=0; i < aircraft.length; i++){ %>
                         <tr>
-                            <td style= "width:120px"><a href="/portfolio/<%=aircraft[i].id%>"><%=aircraft[i].msn%></a></td>
-                            <td style= "width:280px"><%=aircraft[i].lease.operator%></td>
+                            <td style= "width:120px"><a href="/aircraft/<%=aircraft[i].id%>"><%=aircraft[i].msn%></a></td>
+                            <td style= "width:280px">
+                                <% if (aircraft[i].lessee) { %> <%=aircraft[i].lessee.name%> <% } %>
+                            </td>
                             <td style= "width:190px"><%=aircraft[i].lease.status%></td>
                             <td style= "width:190px"><%=aircraft[i].lease.sub_status%></td>
                             

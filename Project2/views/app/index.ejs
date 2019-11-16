@@ -31,8 +31,8 @@
                 <table id="allAircraftTable" style="width:100%">
                     <thead>
                         <tr>
-                            <th style= "width:120px"><a href="/portfolio/new">MSN +</a></th>
-                            <th style= "width:280px">Operator</th>
+                            <th style= "width:120px"><a href="/aircraft/new">MSN +</a></th>
+                            <th style= "width:280px">Lessee</th>
                             <th style= "width:190px">Status</th>
                             <th style= "width:190px">Sub Status</th>
                             <th colspan="2">Action</div></th>
@@ -43,13 +43,15 @@
 
                         <% for (let i=0; i < aircraft.length; i++){ %>
                         <tr>
-                            <td style= "width:120px"><a href="/portfolio/<%=aircraft[i].id%>"><%=aircraft[i].msn%></a></td>
-                            <td style= "width:280px"><%=aircraft[i].lease.operator%></td>
+                            <td style= "width:120px"><a href="/aircraft/<%=aircraft[i].id%>"><%=aircraft[i].msn%></a></td>
+                            <td style= "width:280px">
+                                <% if (aircraft[i].lessee) { %> <%=aircraft[i].lessee.name%> <% } %>
+                            </td>
                             <td style= "width:190px"><%=aircraft[i].lease.status%></td>
                             <td style= "width:190px"><%=aircraft[i].lease.sub_status%></td>
-                            <td><a href="/portfolio/<%=aircraft[i].id%>/edit" class="button"><i class="material-icons">edit</i></a></td>
+                            <td><a href="/aircraft/<%=aircraft[i].id%>/edit" class="button"><i class="material-icons">edit</i></a></td>
                             <td>
-                                <form action="/portfolio/<%=aircraft[i].id%>?_method=DELETE" method="POST">
+                                <form action="/aircraft/<%=aircraft[i].id%>?_method=DELETE" method="POST">
                                     <button type="submit" class="deletebutton" style="border:none; background-color:Transparent" ><i class="material-icons">delete</i></button> 
                                 </form>
                             </td>

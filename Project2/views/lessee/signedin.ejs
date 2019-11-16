@@ -10,6 +10,18 @@
         <div class="Header-banner">
             <h1 id="header">Lessees</h1>
         </div>
+        <!--login area-->
+        <div class="login">
+            <% if(currentUser) { %>
+            <p>Welcome <%=currentUser.username%>!</p>
+            <form action="/sessions?_method=DELETE" method="POST">
+                <button type="submit" style="border:none; background-color:Transparent; color:rgb(218, 218, 218)" ><i class="material-icons" style="font-size:16px">exit_to_app</i></button> 
+            </form>
+            <% } else { %>
+                <a href="/users/new" style="margin-right: 20px">Sign Up</a>
+                <a href="/sessions/new">Log In</a>
+            <% } %>
+        </div>
         <!--end of header-->
         
         <!--start of dashboard page-->
@@ -20,7 +32,7 @@
                 <table id="allAircraftTable" style="width:100%">
                     <thead>
                         <tr>
-                            <th style= "width:120px">Lessee</th>
+                            <th style= "width:120px"><a href="/lessee/new">Lessee +</a></th>
                             <th style= "width:280px">Country</th>
                             <th style= "width:190px">Credit Rating</th>
                             <th style= "width:190px">Number of Aircraft</th>
