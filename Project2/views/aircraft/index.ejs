@@ -53,9 +53,9 @@
                     <canvas id="aircraftTypeChart">
                     </canvas>
                 </div>
-                <p style="text-align:left">Total Aircraft: <%=aircraft.length%>  </p>
+                
             </div>
-
+            <!--barchart-->
             <div class="aircraftAge-box">
                 <h2>Portfolio by Aircraft Age</h2>
                 <p style="text-align:center">by number of aircraft</p></br>
@@ -77,7 +77,7 @@
         console.log(typeof(allData[0].msn));
         console.log(allData[0].aircraft.aircraft_model);
 
-        //Delivered + Committed aircraftt type piechart
+        //Delivered + Committed aircraft type piechart
         var aircraftType = {};
         //map database into object of key value : summation
         allData.forEach(function(x,i){

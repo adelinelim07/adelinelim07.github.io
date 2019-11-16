@@ -12,15 +12,16 @@
         </div>
         <!--login area-->
         <div class="login">
-            <% if(currentUser) { %>
+        <% if(currentUser) { %>
             <p>Welcome <%=currentUser.username%>!</p>
             <form action="/sessions?_method=DELETE" method="POST">
-                <button type="submit" style="border:none; background-color:Transparent; color:rgb(218, 218, 218)" ><i class="material-icons" style="font-size:16px">exit_to_app</i></button> 
+                <button type="submit" style="border:none; background-color:Transparent; color:rgb(218, 218, 218)"><i
+                    class="material-icons" style="font-size:16px">exit_to_app</i></button>
             </form>
-            <% } else { %>
-                <a href="/users/new" style="margin-right: 20px">Sign Up</a>
-                <a href="/sessions/new">Log In</a>
-            <% } %>
+        <% } else { %>
+            <a href="/users/new" style="margin-right: 20px">Sign Up</a>
+            <a href="/sessions/new">Log In</a>
+        <% } %>
         </div>
         <!--end of header-->
         
@@ -35,7 +36,7 @@
                             <th style= "width:120px"><a href="/lessee/new">Lessee +</a></th>
                             <th style= "width:280px">Country</th>
                             <th style= "width:190px">Credit Rating</th>
-                            <th style= "width:190px">Number of Aircraft</th>
+                            <th style= "width:190px"># Aircraft</th>
                             <th colspan="2">Action</div></th>
                             
                         
@@ -48,7 +49,7 @@
                             <td style= "width:120px"><a href="/lessee/<%=lessee[i].id%>"><%=lessee[i].name%></a></td>
                             <td style= "width:280px"><%=lessee[i].country%></td>
                             <td style= "width:190px"><%=lessee[i].credit_rating%></td>
-                            <td style= "width:190px"></td>
+                            <td style= "width:190px"><%=lessee[i].aircraft.length%></td>
                             <td><a href="/lessee/<%=lessee[i].id%>/edit" class="button"><i class="material-icons">edit</i></a></td>
                             <td>
                                 <form action="/lessee/<%=lessee[i].id%>?_method=DELETE" method="POST">
@@ -62,12 +63,88 @@
                 </table>
                 
             </div>
+            <!--HbarChart-->
+            <div class="lesseeConc-box">
+                <h2>Top 5 Lessees</h2>
+                <p style="text-align:center">by NBV(US$m)</p></br>
+                <div class="lesseeConc-chartContainer">
+                    <canvas id="lesseeConcChart">
+                    </canvas>
+                </div>
+            </div>
+            <!--pieChart-->
+            <div class="country-box">
+                <h2>Top 5 Countries</h2>
+                <p style="text-align:center">by NBV(US$'m)</p></br>
+                <div class="country-chartContainer">
+                    <canvas id="countryChart">
+                    </canvas>
+                </div>
+               
+            </div>
+            
             
 
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-        <script src="all.js"></script>
+        <script src="/all.js"></script>
+        <script type="text/javascript">
+            let allData = <%-JSON.stringify(lessee)%>;
+            let total = allData.length;
+            //console.log(allData);
+            //console.log(allData[0].name);
+
+            let X_lessee= [];
+            let X_country= [];
+            let Y_sumNBV= [];
+            let sumNBV = 0;
+
+            for (let i=0; i<allData.length; i++){
+                sumNBV=0; 
+                for (let j=0; j<allData[i].aircraft.length; j++){
+                    sumNBV += allData[i].aircraft[j].accounting.nbv /1000000;
+                }
+                Y_sumNBV.push(sumNBV);
+            }
+
+            var conc = [];
+            for (let i=0; i<allData.length; i++){
+                conc.push({'lessee': allData[i].name, 'country': allData[i].country, 'nbv':Y_sumNBV[i] })
+            }
+
+            conc.sort(function(a,b){
+                return ((a.nbv > b.nbv)? -1: ((a.nbv == b.nbv) ? 0:1 ));
+            })
+
+            console.log(conc);
+
+            for (let i=0; i<conc.length; i++){
+                X_lessee.push(conc[i].lessee);
+                Y_sumNBV[i] = conc[i].nbv ; 
+            }
+
+            plotHBarChart((Y_sumNBV.slice(0,5)),(X_lessee.slice(0,5)),'lesseeConcChart');
+
+            //plotCountryConc
+
+            var countryConc = {};
+            conc.forEach(function(x,i){
+                countryConc[x.country] = (countryConc[x.country] ||0 ) + parseInt(conc[i].nbv);
+            });
+            console.log(countryConc);
+            let sortedCountryConc = Object.entries(countryConc).sort((a,b) => b[1] - a[1]);
+            sortedCountryConc = sortedCountryConc.slice(0,5);
+            
+            let Y_countryNBV = [];
+            for (let i=0; i<sortedCountryConc.length; i++){
+                X_country.push(sortedCountryConc[i][0]);
+                Y_countryNBV.push(sortedCountryConc[i][1]);
+            };
+
+            plotPieChart(Y_countryNBV,X_country,'countryChart');
         
+        
+       </script>
     </body>
 </html>

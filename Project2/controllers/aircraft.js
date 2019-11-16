@@ -45,7 +45,7 @@ router.get('/signedin', isAuthenticated, (req, res)=>{
             if (error) console.error(err.message);
 
             if(allAircraft){
-                res.render('app/index.ejs',{
+                res.render('aircraft/signedin.ejs',{
                     aircraft: allAircraft,
                     currentUser: req.session.currentUser
             });

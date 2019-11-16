@@ -51,13 +51,13 @@ router.get("/new", (req, res) => {
 //...farther down the page
 router.post("/", (req, res) => {
   Lessee.create(req.body, (err, createdLessee) => {
-    res.redirect("/lessee");
+    res.redirect("/lessee/signedin");
   });
 });
 
 router.delete("/:id", (req, res) => {
   Lessee.findByIdAndRemove(req.params.id, () => {
-    res.redirect("/lessee");
+    res.redirect("/lessee/signedin");
   });
 });
 
@@ -71,7 +71,7 @@ router.get("/:id/edit", (req, res) => {
 
 router.put("/:id", (req, res) => {
   Lessee.findByIdAndUpdate(req.params.id, req.body, () => {
-    res.redirect("/lessee");
+    res.redirect("/lessee/signedin");
   });
 });
 

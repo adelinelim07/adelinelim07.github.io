@@ -109,6 +109,59 @@ function calculateAge(inputMnfDate) {
 }
 
 ///////////////////////////////////////////////////////////////////////////
+// FUNCTION TO PLOT HORIZONTAL BAR CHART                                                        
+///////////////////////////////////////////////////////////////////////////
+function plotHBarChart(inputDataArray,labelsArray,canvasID){
+    var ctx = document.getElementById(canvasID).getContext('2d');
+    var data = {
+        datasets: [{
+            data: inputDataArray,
+            barPercentage: 0.5,
+            barThickness: 6,
+            maxBarThickness: 8,
+            minBarLength: 2
+        }],
+        labels: labelsArray
+    };
+
+    var options = {
+        legend: {
+            display: false
+        },
+        maintainAspectRatio: false,
+        scales: {
+            yAxes: [{
+                display: true,
+                ticks: {
+                    suggestedMin: 0
+                }
+
+            }],
+            xAxes: [{
+                gridLines: {
+                    offsetGridLines: true
+                }
+            }]
+        }
+    }
+
+    var chart = new Chart(ctx,{
+        type: 'horizontalBar',
+        data: data,
+        options: options
+    });
+
+    function dynamicColor(){
+        var r = 0;
+        var g = Math.floor(Math.random() * (255-128) + 128);
+        var b = Math.floor(Math.random() * 255);
+        return "rgb(" + r + "," + g + "," + b + ")"
+    };
+
+}
+
+
+///////////////////////////////////////////////////////////////////////////
 // TOGGLE SIDE BAR                                                         
 ///////////////////////////////////////////////////////////////////////////
 $(() => {
