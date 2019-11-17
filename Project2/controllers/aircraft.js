@@ -65,7 +65,7 @@ router.post('/', (req, res)=>{
     Aircraft.create(req.body, (error, createdAircraft)=>{
         Lessee.findByIdAndUpdate(
             req.body.lessee, 
-            {$push: {"aircraft": createdAircraft._id}},
+            { $push: {"aircraft": createdAircraft._id}},
             (err, updatedLessee) => {
                 res.redirect('/aircraft/signedin'); 
             })

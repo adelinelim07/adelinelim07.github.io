@@ -64,7 +64,7 @@ router.delete("/:id", (req, res) => {
 router.get("/:id/edit", (req, res) => {
   Lessee.findById(req.params.id, (err, foundLessee) => {
     res.render("lessee/edit.ejs", {
-      Lessee: foundLessee
+      lessee: foundLessee
     });
   });
 });
