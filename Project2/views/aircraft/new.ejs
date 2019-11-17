@@ -1,58 +1,83 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title></title>
-    </head>
-    <body>
-        <h1>New Aircraft page</h1>
-        <form action="/aircraft" method="POST">
-            MSN: <input type="number" name="msn" id="msn" /><br/>
-            <!--Aircraft-->
-            Aircraft Model: <select name="aircraft.aircraft_model" id="aircraft.aircraft_model">
-                <option value="B737-700">B737-700</option>
-                <option value="B737-800">B737-800</option>
-                <option value="A320-200">A320-200</option>
-                <option value="A321-200">A321-200</option>
-                <option value="B737-Max8">B737-Max8</option>
-                <option value="A320neo">A320neo</option>
-                <option value="A321neo">A321neo</option>
-            </select><br/>
-            Engine Model: <select name="aircraft.engine_model" id="aircraft.engine_model">
-                <option value="PW">PW</option>
-                <option value="IAE">IAE</option>
-                <option value="CFM">CFM</option>
-            </select><br/>
-            ESN1: <input type="string" name="aircraft.esn1" id="aircraft.esn1" /><br/>
-            ESN2: <input type="string" name="aircraft.esn2" id="aircraft.esn1" /><br/>
-            ESN3: <input type="string" name="aircraft.esn3" id="aircraft.esn1" /><br/>
-            ESN4: <input type="string" name="aircraft.esn4" id="aircraft.esn1" /><br/>
-            Manufactured Date: <input type="date" name="aircraft.manufactured_date" id="aircraft.manufactured_date"/></br>
-            <!--lease-->
-            Status: <select name="lease.status" id="lease.status">
-                <option value="Delivered">Delivered</option>
-                <option value="Committed">Committed</option>
-                <option value="Sold">Sold</option>
-            </select><br/>
-            Sub Status: <select name="lease.sub_status" id="lease.sub_status">
-                <option value="Delivered">Delivered</option>
-                <option value="LOI Sales">LOI Sales</option>
-                <option value="SPA Signed">SPA Signed</option>
-                <option value="LOI">LOI</option>
-                <option value="LA Signed">LA Signed</option>
-                <option value="Sold">Sold</option>
-            </select><br/>
-            Lessee: <select name="lessee" id="lessee" />
+
+<head>
+    <% include ../partials/head.ejs %>
+    <link rel="stylesheet" href="../simplepg.css" />
+</head>
+
+<body>
+    <% include ../partials/navbar.ejs %>
+
+    <!--header-->
+    <div class="Header-banner">
+        <h1 id="header">New Aircraft page</h1>
+    </div>
+    <div class="container">
+        <div class="login-area">
+            <form action="/aircraft" method="POST">
+            </br>
+                <label for="msn">MSN </label>
+                <input type="number" name="msn" id="msn" /><br />
+                <!--Aircraft-->
+                <label for="aircraft.aircraft_model">Aircraft Model </label>
+                <select name="aircraft.aircraft_model" id="aircraft.aircraft_model">
+                    <option value="B737-700">B737-700</option>
+                    <option value="B737-800">B737-800</option>
+                    <option value="A320-200">A320-200</option>
+                    <option value="A321-200">A321-200</option>
+                    <option value="B737-Max8">B737-Max8</option>
+                    <option value="A320neo">A320neo</option>
+                    <option value="A321neo">A321neo</option>
+                </select><br />
+                <label for="aircraft.engine_model">Engine Model </label>
+                <select name="aircraft.engine_model" id="aircraft.engine_model">
+                    <option value="PW">PW</option>
+                    <option value="IAE">IAE</option>
+                    <option value="CFM">CFM</option>
+                </select><br />
+                <label for="aircraft.esn1">ESN1 </label> 
+                <input type="string" name="aircraft.esn1" id="aircraft.esn1" /><br />
+                <label for="aircraft.esn1">ESN2 </label> 
+                <input type="string" name="aircraft.esn1" id="aircraft.esn2" /><br />
+                <label for="aircraft.esn1">ESN3 </label> 
+                <input type="string" name="aircraft.esn1" id="aircraft.esn3" /><br />
+                <label for="aircraft.esn1">ESN4 </label> 
+                <input type="string" name="aircraft.esn1" id="aircraft.esn4" /><br />
+                <label for="aircraft.manufactured_date">Mnf Date </label>
+                <input type="date" name="aircraft.manufactured_date" id="aircraft.manufactured_date" /></br>
+                <!--lease-->
+                <label for="lease.status">Status </label>
+                <select name="lease.status" id="lease.status">
+                    <option value="Delivered">Delivered</option>
+                    <option value="Committed">Committed</option>
+                    <option value="Sold">Sold</option>
+                </select><br />
+                <label for="lease.sub_status">Sub Status </label>
+                <select name="lease.sub_status" id="lease.sub_status">
+                    <option value="Delivered">Delivered</option>
+                    <option value="LOI Sales">LOI Sales</option>
+                    <option value="SPA Signed">SPA Signed</option>
+                    <option value="LOI">LOI</option>
+                    <option value="LA Signed">LA Signed</option>
+                    <option value="Sold">Sold</option>
+                </select><br />
+                <label for="lessee">Lessee </label>
+                <select name="lessee" id="lessee" />
                 <% for (let i=0; i < lessees.length; i++ ) { %>
-                    <option value="<%=lessees[i]._id%>"><%=lessees[i].name%></option>
+                <option value="<%=lessees[i]._id%>"><%=lessees[i].name%></option>
                 <% } %>
-            </select><br/>
-            NBV: <input type="number" name="accounting.nbv" id="accounting.nbv"/><br/>
-            <br/>
-            <br/>
-            <input type="submit" name="" value="Create Aircraft"/>
-        </form>
-    </body>
+                </select><br />
+                <label for="accounting.nbv">NBV </label>
+                <input type="number" name="accounting.nbv" id="accounting.nbv" /><br />
+                <br />
+                <br />
+                <input type="submit" name="" value="Create Aircraft" />
+            </form>
+        </div>
+    </div>
+</body>
+
 </html>
 
 <!--

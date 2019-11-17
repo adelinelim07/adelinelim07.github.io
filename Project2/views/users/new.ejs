@@ -1,29 +1,36 @@
 <!DOCTYPE html>
 <html>
-  <head>
 
-  </head>
-    <body>
-      <div class="container">
-        <h1>Create User</h1>
-        <div class="row">
-            <form class="col s12" action="/users" method="POST">
-            <div class="row">
-              <div class="input-field col s6">
-                <input placeholder="Placeholder" id="username" type="text" class="validate" name="username" required>
-                <label for="username">User Name</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="input-field col s12">
-                <input id="password" type="password" class="validate" name="password" required>
-                <label for="password">Password</label>
-              </div>
-            </div>
-            <button type="submit" name="action">Submit
-              <i>send</i>
-            </button>
-          </form>
-        </div>
-    </body>
+<head>
+  <% include ../partials/head.ejs %>
+  <link rel="stylesheet" href="../simplepg.css" />
+</head>
+
+<body>
+  <% include ../partials/navbar.ejs %>
+
+  <!--header-->
+  <div class="Header-banner">
+    <h1 id="header">Create User</h1>
+  </div>
+
+  <div class="container">
+    <div class=login-area>
+        <form class="col s12" action="/users" method="POST">
+          </br>
+          </br>
+
+          <label for="username">User Name </label>
+          <input id="username" type="text" class="validate" name="username" required>
+          </br>
+          <label for="password">Password </label>
+          <input id="password" type="password" class="validate" name="password" required>
+          </br>
+          </br>
+          <button type="submit" name="action">Submit</button>
+        </form>
+      </div>
+    </div>
+</body>
+
 </html>
