@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Daily Updates</title>
+	<% include ../partials/head.ejs %>
+	<link rel="stylesheet" type="text/css" href="../style.css" />
+</head>
+<body>
+<!--nav bar ------->
+<% include ../partials/navbar.ejs %>
+<!--end of nav bar-->
+
+<!--header-->
+	<div class="Header-banner">
+		<h1 id="header"></h1>
+	</div>
+
+<!--start of dashboard page--->
+	<div class="container">
+		
+		<div class="FX-box">
+			<h2>Foreign Exchange Rate Tracker</h2>
+			<div class="fx-table">
+				<p id="fxtablelabel" style="font-weight:700">Today's rates</p>
+				<table id="fx-numbers" class="content">	</table>
+
+				<p id="fxalert" style="font-weight:700">Alert (MoM &#916 >0.5%)</p>
+				<table id="alert-numbers" class="content"> </table>
+			</div>
+		
+			<div class="chart-container">
+				<canvas id="fxChart"></canvas>
+			</div>
+		</div>
+
+		<div class="Jetfuel-box">
+			<h2>Jet Fuel Price Tracker</h2>
+			<div class="Fuel-numbers">
+				
+			</div>
+			<div class="Fuel-chart-container">
+				<canvas id="FuelChart"></canvas>
+
+			</div>
+		</div>
+
+		<div class="News-box">
+			<h2>Airline News</h2>
+			<p style="font-size:0.6em; text-align:center">powered by NewsAPI.org</p>
+			<div class="News-list">
+				<ul id="News-lines" class="content"></ul>
+			</div>
+		</div>
+	</div>
+<!--end of dashboard page-->
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+	<script src="app.js"></script>
+</body>
+</html>
+
+

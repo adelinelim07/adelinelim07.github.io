@@ -1,0 +1,199 @@
+html {
+	font-size: calc(0.58em + 0.58vw);
+}
+
+html, body {
+	margin: 0; 
+	padding: 0;
+}
+
+* {
+	font-family: 'Montserrat', sans-serif;
+}
+
+h2{
+	text-align: center;
+	color: rgba(50,56,110,1);
+}
+
+h2,p{
+	margin:0;
+}
+
+a {
+	text-decoration: none;
+}
+
+.content{
+	font-size: calc(0.55em + 0.55vw);
+}
+
+/*nav bar*/
+.sidebar {
+	height: 100%;
+  	width: 80px;
+  	position: fixed;
+  	z-index: 1;
+  	top: 0;
+  	left: 0;
+  	background-color: rgb(52,56,59);
+  	transition: 0.5s;
+  	overflow-x: hidden;
+  	padding-top: 60px;
+  	white-space: nowrap;
+}
+
+.sidebar a {
+  	padding: 8px 8px 8px 32px;
+  	text-decoration: none;
+  	font-size: 20px;
+  	color: rgb(186,250,255);
+  	display: block;
+}
+
+.sidebar a:hover {
+  	color: rgba(241,241,241,1);
+}
+
+.material-icons,
+.icon-text {
+  	vertical-align: middle;
+}
+
+.material-icons {
+  	padding-bottom: 3px;
+  	margin-right: 30px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidebar {
+    padding-top: 15px;
+  }
+  .sidebar a {
+    font-size: 18px;
+  }
+}
+
+.Header-banner {
+	text-align: center;
+	margin-left: 80px;
+	margin-bottom: 0;
+	padding: 5px;
+	background-color: rgba(50,56,110,1);
+}
+
+.Header-banner h1{
+	margin: 0px; /*space between header and dashboard container*/
+}
+
+h1{
+	color:rgb(255,255,255);
+}
+
+
+/*container for boxes in dashboard*/
+.container {
+	margin-left: 80px;
+	display:flex;
+	background-image: url("https://images.theconversation.com/files/172470/original/file-20170606-3698-c0rfrt.jpg?ixlib=rb-1.1.0&rect=0%2C336%2C5760%2C2793&q=45&auto=format&w=1356&h=668&fit=crop%22"), linear-gradient(rgba(235,240,245,0.8),rgba(235,240,245,0.8));
+	background-position: left;
+	background-size: cover;
+	background-blend-mode: overlay;
+
+	flex-wrap: wrap;
+	flex-direction: row;
+	justify-content: space-around;
+	height: 94vh;
+}
+
+.inputs {
+	margin: auto;
+	width: 90%;
+}
+
+#currencyform{
+	margin-top: 10px;
+	display: inline-block;
+}
+
+
+
+label{
+	font-size: calc(0.55em + 0.55vw);
+}
+
+
+.FX-box{
+	width: 100%;
+	height: 98vh;
+}
+
+.chart-container{
+	background-color: rgba(255,255,255,0.6);
+	height: 40vh;
+	width: 90%;
+	margin: auto;
+	margin-top: 10px;
+	border-radius: 10px;
+}
+
+.fx-table{
+	width: 90%;
+	margin: auto;
+	margin-top: 15px;
+	height: 50vh;
+}
+
+#snapshotdate-form{
+	padding: 0;
+	margin-top: 10px;
+	border: 0;
+}
+
+/*table css*/
+
+#fx-numbers{
+	width: 100%;
+	margin: auto;
+	margin-top: 1px;
+	border-spacing: 0;
+	height: 80%;
+	table-layout: fixed;
+}
+
+#fx-numbers tbody tr:nth-child(even) {
+	background-color: rgba(218,228,232,0.6);
+}
+
+thead{
+	background-color: rgba(50,56,110,0.7);
+	color: rgba(255,255,255,1);
+	display: block;
+}
+
+
+tbody{
+	display: block;
+	width: 100%;
+	overflow-y: auto;
+	height: 34vh;
+}
+
+
+
+th,td{
+	text-align: left;
+	padding: 2px;
+}
+
+/*
+
+thead>tr>:nth-child(1),
+tbody>tr>:nth-child(1){
+	width: 15%;
+}
+*/
+
+
+
+

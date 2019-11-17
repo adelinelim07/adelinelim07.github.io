@@ -49,9 +49,17 @@ app.get('/account', (req, res) => {
 })
 
 app.get('/aircraft', (req, res) => {
-  res.render('/aircraft/index.ejs', {
+  res.render('aircraft/index.ejs', {
       currentUser: req.session.currentUser
   })
+})
+
+app.get('/dailies', (req,res)=> {
+  res.render('dailies/index.ejs')
+})
+
+app.get('/fx', (req,res)=> {
+  res.render('fx/index.ejs')
 })
 
 // Listen

@@ -1,0 +1,180 @@
+html {
+	font-size: calc(0.58em + 0.58vw);
+}
+
+html, body {
+	margin: 0; 
+	padding: 0;
+}
+
+* {
+	font-family: 'Montserrat', sans-serif;
+}
+
+h2{
+	text-align: center;
+	color: rgba(50,56,110,1);
+}
+
+h2,p{
+	margin:0;
+}
+
+a {
+	text-decoration: none;
+}
+
+.content{
+	font-size: calc(0.5em + 0.5vw);
+}
+
+/*nav bar*/
+.sidebar {
+	height: 100%;
+  	width: 80px;
+  	position: fixed;
+  	z-index: 1;
+  	top: 0;
+  	left: 0;
+  	background-color: rgb(52,56,59);
+  	transition: 0.5s;
+  	overflow-x: hidden;
+  	padding-top: 60px;
+  	white-space: nowrap;
+}
+
+.sidebar a {
+  	padding: 8px 8px 8px 32px;
+  	text-decoration: none;
+  	font-size: 20px;
+  	color: rgb(186,250,255);
+  	display: block;
+}
+
+.sidebar a:hover {
+  	color: rgba(241,241,241,1);
+}
+
+.material-icons,
+.icon-text {
+  	vertical-align: middle;
+}
+
+.material-icons {
+  	padding-bottom: 3px;
+  	margin-right: 30px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidebar {
+    padding-top: 15px;
+  }
+  .sidebar a {
+    font-size: 18px;
+  }
+}
+
+.Header-banner {
+	text-align: center;
+	margin-top: 0;
+	margin-left: 80px;  /*top right bottom left*/
+	padding: 5px;
+	background-color: rgba(50,56,110,1);
+}
+
+
+.Header-banner h1{
+	margin: 0; /*space between header and dashboard container*/
+}
+
+
+
+/*container for boxes in dashboard
+https://www.smashingmagazine.com/2016/11/css-grids-flexbox-box-alignment-new-layout-standard/
+*/
+.container {
+	margin-left: 80px;
+	margin-top: 0;
+	background-image: url("https://images.theconversation.com/files/172470/original/file-20170606-3698-c0rfrt.jpg?ixlib=rb-1.1.0&rect=0%2C336%2C5760%2C2793&q=45&auto=format&w=1356&h=668&fit=crop%22"), linear-gradient(rgba(6,78,150,0.2),rgba(6,78,150,0.2));
+	background-position: left;
+	background-size: cover;
+	background-blend-mode: overlay;
+
+	display: grid;
+	grid-template-columns: 5px 1fr 1fr 1fr 5px;
+	grid-template-rows: 3px 1fr 1fr 1fr 1fr 1fr 5px;
+	grid-gap: 20px;
+	justify-content: space-around;
+	height: 94vh;
+}
+
+div[class$="box"] {
+	background-color: rgba(247,255,254,0.7);
+	border-radius: 25px;
+}
+
+.Jetfuel-box{
+	grid-column: 2 / 4 ;
+	grid-row: 2 / 4;
+}
+
+.FX-box{
+	grid-column: 2 / 4;
+	grid-row: 4 / 7;
+}
+
+.News-box{
+	grid-column: 4;
+	grid-row: 2 / 7;
+	margin: 0; /*top right bottom left*/
+	float: right;
+}
+
+
+.News-list{
+	height: 90%;
+	width: 90%;
+	overflow: auto;
+}
+
+.fx-table{
+	position: relative;
+	margin: auto;
+	float: left;
+	width: 24%;
+	margin: 0.5rem 0 0.2rem 0.1rem; /*top right bottom left*/
+}
+
+#fx-numbers, #fxtablelabel, #alert-numbers {
+	margin-left: 1rem;
+	margin-top: 0.3rem;
+}
+
+#fxalert {
+	margin-left: 1rem;
+	margin-top: 1rem;
+}
+
+
+.chart-container{
+	background-color: rgba(255,255,255,0.4);
+	position: relative;
+	margin: auto;
+	float: right;
+	margin: 0.8rem 1rem 1rem 0; /*top right bottom left*/
+	height: 80%;
+	width: 72%;
+	border-radius: 10px;
+}
+
+.Fuel-chart-container{
+	background-color: rgba(255,255,255,0.4);
+	position: relative;
+	margin: auto;
+	margin-bottom: 5%;
+	height: 80%;
+	width: 90%;
+	border-radius: 10px;
+}
+
+

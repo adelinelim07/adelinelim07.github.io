@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Foreign Exchange Tracker</title>
+	<% include ../partials/head.ejs %>
+	<link rel="stylesheet" type="text/css" href="fxStyle.css" />
+</head>
+<body>
+<!--nav bar ------->
+<% include ../partials/navbar.ejs %>
+<!--end of nav bar-->
+
+<!--header-->
+	<div class="Header-banner">
+		<h1 id="header">Foreign Exchange Tracker</h1>
+	</div>
+
+<!--start of dashboard page--->
+	<div class="container">
+		<div class="FX-box">
+			<div class="inputs">
+				<form id= "currencyform">
+					<div class="fxpair-input">
+						<label>Choose quote currency (base currency = USD): </label>
+							<select id="quote">
+								<option value>Select one... </option>
+								<option value="JPY">JPY</option>
+								<option value="EUR">EUR</option>
+								<option value="CNY">CNY</option>
+								<option value="GBP">GBP</option>
+								<option value="INR">INR</option>
+								<option value="HKD">HKD</option>
+								<option value="IDR">IDR</option>
+								<option value="RUB">RUB</option>
+								<option value="KRW">KRW</option>
+								<option value="TRY">TRY</option>
+								<option value="BRL">BRL</option>
+								<option value="THB">THB</option>
+								<option value="MYR">MYR</option>
+							</select>
+							<button type="submit" id="submitCurrency">+</button>
+					</div>
+				</form>
+			</div>
+			<div class="chart-container">
+				<canvas id="fxChart"></canvas>
+			</div>
+
+			<div class="fx-table">
+				<form id="snapshotdateform">
+					<label>Select Snapshot Date:</label>
+					<input type="date" id="snapshotDate">
+					<button type="submit" name="button" id="submitSnapshotDate">Submit</button>
+				</form>
+				<table id="fx-numbers" class="content" style="width:100%">
+					<thead>
+						<tr>
+							<th colspan="5" style="width:100vw">Table with all foreign rates (base currency = USD)</th>
+						</tr>
+						<tr>
+							<th style="width:20vw">Currency</th>
+							<th style="width:25vw">Country/ Region</th>
+							<th style="width:35vw" id="rate-column">Rate at Snapshot Date &#8593</th>
+							<th style="width:10vw" id="yoy-column">YoY% &#8595</th>
+							<th style="width:10vw" id="mom-column">MoM% &#8595</th>
+						</tr>
+					</thead>
+					<tbody id="fxTableBody">
+						
+					</tbody>
+				</table>
+			</div>
+		
+
+		</div>
+	</div>
+
+<!--end of dashboard page-->
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+	<script src="fxApp.js"></script>
+</body>
+</html>
+
+

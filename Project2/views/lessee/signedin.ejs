@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <title>Lessees</title>
         <% include ../partials/head.ejs %>
+        <link rel="stylesheet" href="../main.css" />
     </head>
     <body>
         <% include ../partials/navbar.ejs %>
@@ -33,8 +35,8 @@
                 <table id="allAircraftTable" style="width:100%">
                     <thead>
                         <tr>
-                            <th style= "width:120px"><a href="/lessee/new">Lessee +</a></th>
-                            <th style= "width:280px">Country</th>
+                            <th style= "width:250px"><a href="/lessee/new">Lessee +</a></th>
+                            <th style= "width:200px">Country</th>
                             <th style= "width:190px">Credit Rating</th>
                             <th style= "width:190px"># Aircraft</th>
                             <th colspan="2">Action</div></th>
@@ -46,8 +48,8 @@
 
                         <% for (let i=0; i < lessee.length; i++){ %>
                         <tr>
-                            <td style= "width:120px"><a href="/lessee/<%=lessee[i].id%>"><%=lessee[i].name%></a></td>
-                            <td style= "width:280px"><%=lessee[i].country%></td>
+                            <td style= "width:250px"><a href="/lessee/<%=lessee[i].id%>"><%=lessee[i].name%></a></td>
+                            <td style= "width:200px"><%=lessee[i].country%></td>
                             <td style= "width:190px"><%=lessee[i].credit_rating%></td>
                             <td style= "width:190px"><%=lessee[i].aircraft.length%></td>
                             <td><a href="/lessee/<%=lessee[i].id%>/edit" class="button"><i class="material-icons">edit</i></a></td>
