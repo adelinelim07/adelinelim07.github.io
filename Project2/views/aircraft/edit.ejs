@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
-        <title></title>
+        <% include ../partials/head.ejs %>
     </head>
     <body>
+        <!--
+        <% include ../partials/navbar.ejs %>
+    -->
         <h1>Edit Aircraft page</h1>
         <form action="/aircraft/<%=aircraft.id%>?_method=PUT" method="POST">
             MSN: <input type="number" name="msn" id="msn" value="<%=aircraft.msn%>"/><br/>
@@ -15,16 +17,27 @@
             ESN2: <input type="string" name="aircraft.esn2" id="aircraft.esn2" value="<%=aircraft.aircraft.esn2%>"><br/>
             ESN3: <input type="string" name="aircraft.esn3" id="aircraft.esn3" value="<%=aircraft.aircraft.esn2%>"><br/>
             ESN4: <input type="string" name="aircraft.esn4" id="aircraft.esn4" value="<%=aircraft.aircraft.esn2%>"><br/>
-            Manufactured Date: <input type="date" name="aircraft.manufactured_date" id="aircraft.manufactured_date" value="<%=aircraft.aircraft.manufactured_date%>"></br>
+            Manufactured Date: <input type="date" name="aircraft.manufactured_date" id="aircraft.manufactured_date" value=""></br>
             <!--Lease-->
             Status: <input type="string" name="lease.status" id="lease.status" value="<%=aircraft.lease.status%>"><br/>
             Sub Status: <input type="string" name="lease.sub_status" id="lease.sub_status" value="<%=aircraft.lease.sub_status%>"><br/>
-            Lessee: <input type="string" name="lessee.name" id="lease.name" /><br/>
+            Lessee: <select name="lessee" id="lessee" value="<%=aircraft.lessee.name%>"/>
+                <% for (let i=0; i < lessees.length; i++ ) { %>
+                    <% if (String(aircraft.lessee._id) === String(lessees[i]._id)) { %>
+                        <option value="<%=lessees[i]._id%>" selected="false"><%=lessees[i].name%><%=i%></option>
+                    <% } else %>
+                    { %>
+                    <option value="<%=lessees[i]._id%>"><%=lessees[i].name%><%=i%></option>
+                    <% } %>
+                </select><br />
+            
+            
             <!--Accounting-->
             NBV: <input type="number" name="accounting.nbv" id="accounting.nbv" value="<%=aircraft.accounting.nbv%>"><br/>
             <br/>
             <input type="submit" name="" value="Edit Aircraft"/>
         </form>
+        
     </body>
 </html>
 
