@@ -1,22 +1,41 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title></title>
-    </head>
-    <body>
-        <h1>New Lessee page</h1>
+  <head>
+    <% include ../partials/head.ejs %>
+    <link rel="stylesheet" href="/simplepg.css" />
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css" integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <% include ../partials/navbar.ejs %>
+    <div class="Header-banner">
+      <h1>New Lessee Page</h1>
+    </div>
+    <div class="container">
+      <div class="inner-container">
+      </br>
         <form action="/lessee" method="POST">
-            Name: <input type="string" name="name" id="name" /><br/>
-            Country: <input type="string" name="country" id="country" /><br/>
-            Credit Rating: <input type="number" name="credit_rating" id="credit_rating" /><br/>
-            
+          <label><span>Name</span>
+            <input type="string" name="name" id="name" /><br />
+          </label>
 
-            <br/>
-            <br/>
-            <input type="submit" name="" value="Create Lessee"/>
+          <label><span>Country</span>
+            <input type="string" name="country" id="country" /><br />
+          </label>
+  
+          <label><span>Credit Rating</span>
+            <input type="number" name="credit_rating" id="credit_rating" /><br />
+          </label>
+          
+          <br />
+          <br />
+          <input type="submit" name="" class="pure-button pure-button-active" value="Create Lessee" />
         </form>
-    </body>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="/all.js"></script>
+  </body>
 </html>
 
 <!--

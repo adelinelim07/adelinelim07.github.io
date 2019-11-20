@@ -102,8 +102,6 @@ router.get('/:id/edit', (req, res)=>{
     });
 });
 
-
-
 router.get('/:id', (req, res)=>{
     Aircraft.findById(req.params.id, (err, foundAircraft)=>{
         res.render('aircraft/show.ejs', {
@@ -112,29 +110,29 @@ router.get('/:id', (req, res)=>{
     });
 });
 
-// router.put('/:id', (req, res)=>{
-//     Aircraft.findByIdAndUpdate(req.params.id, req.body, (err, updatedModel)=>{
-//         res.redirect('/aircraft/signedin');
-//     });
+router.put('/:id', (req, res)=>{
+    Aircraft.findByIdAndUpdate(req.params.id, req.body, (err, updatedModel)=>{
+        res.redirect('/aircraft/signedin');
+    });
 
-// });
+});
 
-router.put('/:id', (req,res)=>{
-    Aircraft.findById(req.params.id)
-    .populate('lessee')
-    .exec(function(err, existingModel){
-        if(err){
-            console.log(err);
-        } else {
-            console.log(existingModel.lessee.id);
-            console.log(existingModel._id)
-            Lessee.findByIdAndUpdate(
-                 existingModel.lessee._id,
-                 { $pull: {"aircraft": existingModel._id}}
-            )
-        }
-    })
-})
+// router.put('/:id', (req,res)=>{
+//     Aircraft.findById(req.params.id)
+//     .populate('lessee')
+//     .exec(function(err, existingModel){
+//         if(err){
+//             console.log(err);
+//         } else {
+//             console.log(existingModel.lessee.id);
+//             console.log(existingModel._id)
+//             Lessee.findByIdAndUpdate(
+//                  existingModel.lessee._id,
+//                  { $pull: {"aircraft": existingModel._id}}
+//             )
+//         }
+//     })
+// })
 
 
 module.exports = router;

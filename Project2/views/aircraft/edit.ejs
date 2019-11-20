@@ -2,44 +2,79 @@
 <html>
     <head>
         <% include ../partials/head.ejs %>
+        <link rel="stylesheet" href="/simplepg.css" />
+        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css" integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
-        <!--
         <% include ../partials/navbar.ejs %>
-    -->
-        <h1>Edit Aircraft page</h1>
-        <form action="/aircraft/<%=aircraft.id%>?_method=PUT" method="POST">
-            MSN: <input type="number" name="msn" id="msn" value="<%=aircraft.msn%>"/><br/>
-            <!--Aircraft-->
-            Aircraft Model: <input type="string" name="aircraft.aircraft_model" id=name="aircraft.aircraft_model" value="<%=aircraft.aircraft.aircraft_model%>"><br/>
-            Engine Model: <input type="string" name="aircraft.engine_model" id=name="aircraft.engine_model" value="<%=aircraft.aircraft.engine_model%>"><br/>
-            ESN1: <input type="string" name="aircraft.esn1" id="aircraft.esn1" value="<%=aircraft.aircraft.esn1%>"><br/>
-            ESN2: <input type="string" name="aircraft.esn2" id="aircraft.esn2" value="<%=aircraft.aircraft.esn2%>"><br/>
-            ESN3: <input type="string" name="aircraft.esn3" id="aircraft.esn3" value="<%=aircraft.aircraft.esn2%>"><br/>
-            ESN4: <input type="string" name="aircraft.esn4" id="aircraft.esn4" value="<%=aircraft.aircraft.esn2%>"><br/>
-            Manufactured Date: <input type="date" name="aircraft.manufactured_date" id="aircraft.manufactured_date" value=""></br>
-            <!--Lease-->
-            Status: <input type="string" name="lease.status" id="lease.status" value="<%=aircraft.lease.status%>"><br/>
-            Sub Status: <input type="string" name="lease.sub_status" id="lease.sub_status" value="<%=aircraft.lease.sub_status%>"><br/>
-            Lessee: <select name="lessee" id="lessee" value="<%=aircraft.lessee.name%>"/>
-                <% for (let i=0; i < lessees.length; i++ ) { %>
-                    <% if (String(aircraft.lessee._id) === String(lessees[i]._id)) { %>
-                        <option value="<%=lessees[i]._id%>" selected="false"><%=lessees[i].name%><%=i%></option>
-                    <% } else %>
-                    { %>
-                    <option value="<%=lessees[i]._id%>"><%=lessees[i].name%><%=i%></option>
-                    <% } %>
-                </select><br />
+
+        <div class="Header-banner">
+            <h1>Edit Aircraft page</h1>
+        </div>
+        
+        <div class="container">
+            <div class="inner-container">
+            </br>
+            <form action="/aircraft/<%=aircraft.id%>?_method=PUT" method="POST">
             
+            <label><span>MSN</span>
+                <input type="number" name="msn" id="msn" value="<%=aircraft.msn%>"/><br/>
+            </label>
+            
+            <!--Aircraft-->
+            <label><span>Aircraft Model</span>
+                <input type="string" name="aircraft.aircraft_model" id=name="aircraft.aircraft_model" value="<%=aircraft.aircraft.aircraft_model%>"><br/>
+            <label><span>Engine Model</span>
+                <input type="string" name="aircraft.engine_model" id=name="aircraft.engine_model" value="<%=aircraft.aircraft.engine_model%>"><br/>
+            </label>
+            <label><span>ESN1</span>
+                <input type="string" name="aircraft.esn1" id="aircraft.esn1" value="<%=aircraft.aircraft.esn1%>"><br/>
+            </label>
+            <label><span>ESN2</span>
+                <input type="string" name="aircraft.esn2" id="aircraft.esn2" value="<%=aircraft.aircraft.esn2%>"><br/>
+            </label>
+            <label><span>ESN3</span>
+                <input type="string" name="aircraft.esn3" id="aircraft.esn3" value="<%=aircraft.aircraft.esn3%>"><br/>
+            </label>
+            <label><span>ESN4</span>
+                <input type="string" name="aircraft.esn4" id="aircraft.esn4" value="<%=aircraft.aircraft.esn4%>"><br/>
+            </label>
+            <label><span>Manufactured Date</span>
+                <input type="date" name="aircraft.manufactured_date" id="aircraft.manufactured_date" value=""></br>
+            </label>
+            <!--Lease-->
+            <label><span>Status</span>
+                <input type="string" name="lease.status" id="lease.status" value="<%=aircraft.lease.status%>"><br/>
+            </label>
+            <label><span>Sub Status</span>
+                <input type="string" name="lease.sub_status" id="lease.sub_status" value="<%=aircraft.lease.sub_status%>"><br/>
+            </label>
+
+            <label><span>Lessee</span>
+                <select name="lessee" id="lessee" value="<%=aircraft.lessee.name%>"/>
+                    <% for (let i=0; i < lessees.length; i++ ) { %>
+                        <% if (String(aircraft.lessee._id) === String(lessees[i]._id)) { %>
+                            <option value="<%=lessees[i]._id%>" selected="false"><%=lessees[i].name%><%=i%></option>
+                        <% } else %>
+                        { %>
+                        <option value="<%=lessees[i]._id%>"><%=lessees[i].name%><%=i%></option>
+                        <% } %>
+                </select><br />   
+            </label>
             
             <!--Accounting-->
-            NBV: <input type="number" name="accounting.nbv" id="accounting.nbv" value="<%=aircraft.accounting.nbv%>"><br/>
+            <label><span>NBV</span>
+                <input type="number" name="accounting.nbv" id="accounting.nbv" value="<%=aircraft.accounting.nbv%>"><br/>
+            </label>
             <br/>
-            <input type="submit" name="" value="Edit Aircraft"/>
-        </form>
-
-        
-        
+            <br/>
+            <input type="submit" name="" class="pure-button pure-button-active" value="Edit Aircraft">
+            </form>
+            </div>
+        </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="/all.js"></script>
     </body>
 </html>
 

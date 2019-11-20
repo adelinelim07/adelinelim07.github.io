@@ -1,29 +1,82 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
-        <title></title>
+        <% include ../partials/head.ejs %>
+        <link rel="stylesheet" href="/simplepg.css" />
+        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css" integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
-        <h1><%=aircraft.msn%></h1>
-        <div>
-            MSN: <%=aircraft.msn%><br/>
+        <% include ../partials/navbar.ejs %>
+        <div class="Header-banner">
+            <h1>Details of MSN <%=aircraft.msn%></h1>
+        </div>
+        <div class="container">
+            <div class="inner-container">
+           
             <!--Aircraft-->
-            Aircraft Model: <%=aircraft.aircraft.aircraft_model%><br/>
-            Engine Model: <%=aircraft.aircraft.engine_model%><br/>
-            ESN1: <%=aircraft.aircraft.esn1%><br/>
-            ESN2: <%=aircraft.aircraft.esn2%><br/>
-            ESN3: <%=aircraft.aircraft.esn3%><br/>
-            ESN4: <%=aircraft.aircraft.esn4%><br/>
-            Manufactured Date: <%=aircraft.aircraft.manufactured_date%></br>
-            <!--Lease-->
-            Status: <%=aircraft.lease.status%><br/>
-            Sub Status: <%=aircraft.lease.sub_status%><br/>
-            Lessee: <%=aircraft.lessee.name%><br/>
-            <!--Accounting-->
-            NBV: <%=aircraft.accounting.nbv%><br/>
+            <table class="listItems">
+            </br>
+            </br>
+                    <tr>
+                        <td>MSN</td>
+                        <td><%=aircraft.msn%></td>
+                    </tr>
+                    <tr>
+                        <td>Aircraft Model</td>
+                        <td><%=aircraft.aircraft.aircraft_model%></td>
+                    </tr>
+                    <tr>
+                        <td>Engine Model</td>
+                        <td><%=aircraft.aircraft.engine_model%></td>
+                    </tr>
+                    <tr>
+                        <td>ESN1</td>
+                        <td><%=aircraft.aircraft.esn1%></td>
+                    </tr>
+                    <tr>
+                        <td>ESN2</td>
+                        <td><%=aircraft.aircraft.esn2%></td>
+                    </tr>
+                    <tr>
+                        <td>ESN3</td>
+                        <td><%=aircraft.aircraft.esn3%></td>
+                    </tr>
+                    <tr>
+                        <td>ESN4</td>
+                        <td><%=aircraft.aircraft.esn4%></td>
+                    </tr>
+                    <tr>
+                        <td>Manufactured Date</td>
+                        <td><%=aircraft.aircraft.manufactured_date%></td>
+                    </tr>
+                    <tr>
+                        <td>Status</td>
+                        <td><%=aircraft.lease.status%></td>
+                    </tr>
+                    <tr>
+                        <td>Sub Status</td>
+                        <td><%=aircraft.lease.sub_status%></td>
+                    </tr>
+                    <tr>
+                        <td>Sub Status</td>
+                        <td><%=aircraft.lease.sub_status%></td>
+                    </tr>
+                    <tr>
+                        <td>Lessee</td>
+                        <td><%=aircraft.lessee.name%></td>
+                    </tr>
+                    <tr>
+                        <td>NBV (US$'m)</td>
+                        <td><%=aircraft.accounting.nbv%></td>
+                    </tr>
+            </table>
             <br/>
             <br/>
+            <br/>
+            <br/>
+            <a href="/aircraft/signedin">back</a>
+        </div>
         </div>
     </body>
 </html>

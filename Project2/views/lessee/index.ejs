@@ -36,9 +36,13 @@
                             <td style= "width:250px"><a href="/lessee/<%=lessee[i].id%>"><%=lessee[i].name%></a></td>
                             <td style= "width:200px"><%=lessee[i].country%></td>
                             <td style= "width:190px"><%=lessee[i].credit_rating%></td>
-                            <td style= "width:190px"><%=lessee[i].aircraft.length%></td>
-                            
-                            
+                            <% let aircraftCount =0 %>
+                            <% for (let j=0; j < aircraft.length; j++){ %>
+                                <% if( String(aircraft[j].lessee._id) == String(lessee[i]._id) ){ %>
+                                    <% aircraftCount += 1%>
+                                <%} %>
+                            <% } %>
+                            <td style= "width:190px"><%=aircraftCount%></td>
                         </tr>
                         <% } %>
                     </tbody>
@@ -71,6 +75,89 @@
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
         <script src="/all.js"></script>
         <script type="text/javascript">
+        let allLessee = <%-JSON.stringify(lessee)%>;
+            let allAircraft = <%-JSON.stringify(aircraft)%>;
+            
+            let lesseeMap = [];
+            for (let i=0; i< allLessee.length; i++){
+                lesseeMap.push({"arrayId":i, "id": allLessee[i]._id, "name": allLessee[i].name, "country": allLessee[i].country})
+            }
+
+            var lesseeConc = {};
+            //map database into object of key value : summation
+            allAircraft.forEach(function(x,i){
+            //sumif formula ---- sum nbv for each key value (key value = lessee id)
+                lesseeConc[x.lessee] = (lesseeConc[x.lessee] || 0) + parseInt(allAircraft[i].accounting.nbv/1000000);
+            });
+            console.log(lesseeConc);
+
+            let sortedlesseeConc = Object.entries(lesseeConc).sort((a,b) => b[1] - a[1]);
+            sortedlesseeConc = sortedlesseeConc.slice(0,5);
+            console.log(sortedlesseeConc);
+
+            let Y_lesseeNBV= [];
+            let X_lesseeID= [];
+            let X_lesseeName= [];
+            let X_lesseeCountry =[];
+            for (let i=0; i<sortedlesseeConc.length; i++){
+                X_lesseeID.push(sortedlesseeConc[i][0]);
+                for (let j=0; j<lesseeMap.length; j++){
+                    if(X_lesseeID[i]===lesseeMap[j].id){
+                        X_lesseeName.push(lesseeMap[j].name);
+                        X_lesseeCountry.push(lesseeMap[j].country);
+                    }
+                }
+                Y_lesseeNBV.push(sortedlesseeConc[i][1]);
+            };
+            console.log(Y_lesseeNBV);
+            console.log(X_lesseeID);
+            console.log(X_lesseeName);
+            console.log(X_lesseeCountry);
+
+            plotHBarChart((Y_lesseeNBV),(X_lesseeName),'lesseeConcChart');
+
+            let X_country= [];
+            let Y_sumNBV= [];
+            let sumNBV = 0;
+
+
+            var conc = [];
+            for (let i=0; i<X_lesseeID.length; i++){
+                conc.push({'lessee': X_lesseeName[i], 'country': X_lesseeCountry[i], 'nbv':Y_lesseeNBV[i] })
+            }
+
+            conc.sort(function(a,b){
+                return ((a.nbv > b.nbv)? -1: ((a.nbv == b.nbv) ? 0:1 ));
+            })
+
+            //plotCountryConc
+
+            var countryConc = {};
+            conc.forEach(function(x,i){
+                countryConc[x.country] = (countryConc[x.country] ||0 ) + parseInt(conc[i].nbv);
+            });
+            console.log(countryConc);
+            let sortedCountryConc = Object.entries(countryConc).sort((a,b) => b[1] - a[1]);
+            sortedCountryConc = sortedCountryConc.slice(0,5);
+            console.log(sortedCountryConc);
+            
+            let Y_countryNBV = [];
+            for (let i=0; i<sortedCountryConc.length; i++){
+                X_country.push(sortedCountryConc[i][0]);
+                Y_countryNBV.push(sortedCountryConc[i][1]);
+            };
+
+            plotPieChart(Y_countryNBV,X_country,'countryChart');
+
+
+
+
+
+
+
+
+
+            /*
             let allData = <%-JSON.stringify(lessee)%>;
             let total = allData.length;
             //console.log(allData);
@@ -124,6 +211,7 @@
             };
 
             plotPieChart(Y_countryNBV,X_country,'countryChart');
+            */
         
        </script>
     </body>

@@ -1,17 +1,41 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
-        <title></title>
+        <% include ../partials/head.ejs %>
+        <link rel="stylesheet" href="/simplepg.css" />
+        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css" integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
-        <h1><%=lessee.name%></h1>
-        <div>
-            Name: <%=lessee.name%><br/>
-            Country: <%=lessee.country%><br/>
-            Credit Rating: <%=lessee.credit_rating%><br/>
+
+        <% include ../partials/navbar.ejs %>
+        <div class="Header-banner">
+            <h1><%=lessee.name%> details</h1>
+        </div>
+
+        <div class ="container">
+            <div class="inner-container">
+            </br>
+            <table class="listItems">
+                <tr>
+                    <td>Name</td>
+                    <td><%=lessee.name%></td>
+                </tr>
+                <tr>
+                    <td>Country</td>
+                    <td><%=lessee.country%></td>
+                </tr>
+                <tr>
+                    <td>Credit Rating</td>
+                    <td><%=lessee.credit_rating%></td>
+                </tr>
+            </table>
+
             <br/>
             <br/>
+            <br/>
+            <a href="/lessee/signedin">back</a>
+            </div>
         </div>
     </body>
 </html>

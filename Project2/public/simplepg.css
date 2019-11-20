@@ -101,7 +101,7 @@ a {
 }
 
 
-.login-area {
+.inner-container {
 	display: inline-block;
 	position: absolute;
 	background-color: rgba(247,255,254,0.7);
@@ -112,15 +112,16 @@ a {
 	
 }
 
-.login-area p, form {
+.inner-container p, form {
 	display: inline-block;
 }
 
 
-.login-area button {
+.inner-container button {
 	position: relative;
 	cursor: pointer;
 	color: black;
+	margin-left: 150px;
 }
 
 .login {
@@ -132,24 +133,34 @@ a {
 }
 
 label {
-	float: left; 
-	width: 8em; 
-	text-align: right;
+    display: block;
+    margin: 5px 0;
 }
 
-input, select {
-	text-align: left;
+label span {
+	display: inline-block;
+    text-align: right;
+    width: 150px;
 }
 
-input, select, option {
-	width: 50%
+label input {
+	width: 160px;
 }
 
-input.submit  {
-	margin-left: 8em;
+label select {
+	width: 160px;
 }
 
+.listItems {
+	width: 100%;
+}
 
+.listItems td {
+	padding: 0 0 0 10px; /*top right bottom left*/
+	border: 1px grey;
+	text-align: left
+}
 
-
-
+.listItems tr:nth-child(even) {
+	background-color: #f2f2f2;
+}

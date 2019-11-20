@@ -1,19 +1,44 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
-        <title></title>
+        <% include ../partials/head.ejs %>
+        <link rel="stylesheet" href="/simplepg.css" />
+        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css" integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
+
     <body>
-        <h1>Edit Lessee page</h1>
-        <form action="/lessee/<%=lessee.id%>?_method=PUT" method="POST">
-            Name: <input type="string" name="name" id="name" value="<%=lessee.name%>"/><br/>
-            Country: <input type="string" name="country" id="country" value="<%=lessee.country%>"><br/>
-            Credit Rating: <input type="number" name="credit_rating" id="credit_rating" value="<%=lessee.credit_rating%>"><br/>
+        <% include ../partials/navbar.ejs %>
+        <div class="Header-banner">
+            <h1>Edit Lessee Page</h1>
+        </div>
+        <div class="container">
+            <div class="inner-container">
             </br>
-            <input type="submit" name="" value="Edit Lessee"/>
-        </form>
+            </br>
+            <form action="/lessee/<%=lessee.id%>?_method=PUT" method="POST">
+            
+            <label><span>Name</span>
+                <input type="string" name="name" id="name" value="<%=lessee.name%>"/><br/>
+            </label> 
+            
+            <label><span>Country</span>
+                <input type="string" name="country" id="country" value="<%=lessee.country%>"><br/>
+            </label>
+            
+            <label><span>Credit Rating</span>
+                <input type="number" name="credit_rating" id="credit_rating" value="<%=lessee.credit_rating%>"><br/>
+            </label>
+            </br>
+            </br>
+            <input type="submit" name="" class="pure-button pure-button-active" value="Edit Lessee"/>
+            </form>
+            </div>
+        </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="/all.js"></script>
     </body>
+
 </html>
 
 

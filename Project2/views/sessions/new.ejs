@@ -3,7 +3,9 @@
 
 <head>
   <% include ../partials/head.ejs %>
-  <link rel="stylesheet" href="../simplepg.css" />
+  <link rel="stylesheet" href="/simplepg.css" />
+  <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css" integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47" crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
@@ -14,21 +16,31 @@
     <h1 id="header">Log In</h1>
   </div>
   <div class="container">
-    <div class="login-area">
+    <div class="inner-container">
       <form action="/sessions" method="POST">
         </br>
         </br>
-        <label for="username">User Name </label>
-        <input id="username" type="text" class="validate" name="username" required>
+          <label>
+            <span>User Name</span>
+            <input id="username" type="text" class="validate" name="username" required>
+          </label>
+        
+
+          <label>
+              <span>Password</span>
+              <input id="password" type="password" class="validate" name="password" required>
+            </label>
         </br>
-        <label for="password">Password </label>
-        <input id="password" type="password" class="validate" name="password" required>
         </br>
         </br>
-        <button type="submit" name="action">Submit</button>
+        <button type="submit" name="action" class="pure-button pure-button-active">Submit</button>
+      
       </form>
-    </div>
   </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+  <script src="/all.js"></script>
 </body>
 
 </html>
