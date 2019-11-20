@@ -41,7 +41,7 @@
                 <input type="string" name="aircraft.esn4" id="aircraft.esn4" value="<%=aircraft.aircraft.esn4%>"><br/>
             </label>
             <label><span>Manufactured Date</span>
-                <input type="date" name="aircraft.manufactured_date" id="aircraft.manufactured_date" value=""></br>
+                <input type="date" name="aircraft.manufactured_date" id="aircraft.manufactured_date" value="<%=aircraft.manufactured_date%>"></br>
             </label>
             <!--Lease-->
             <label><span>Status</span>
@@ -55,12 +55,13 @@
                 <select name="lessee" id="lessee" value="<%=aircraft.lessee.name%>"/>
                     <% for (let i=0; i < lessees.length; i++ ) { %>
                         <% if (String(aircraft.lessee._id) === String(lessees[i]._id)) { %>
-                            <option value="<%=lessees[i]._id%>" selected="false"><%=lessees[i].name%><%=i%></option>
+                            <option value="<%=lessees[i]._id%>" selected="false"><%=lessees[i].name%></option>
                         <% } else %>
                         { %>
-                        <option value="<%=lessees[i]._id%>"><%=lessees[i].name%><%=i%></option>
+                        <option value="<%=lessees[i]._id%>"><%=lessees[i].name%></option>
                         <% } %>
                 </select><br />   
+
             </label>
             
             <!--Accounting-->
