@@ -21,10 +21,10 @@
                 <table id="allAircraftTable" style="width:100%">
                     <thead>
                         <tr>
-                            <th style= "width:250px">Lessee</th>
-                            <th style= "width:200px">Country</th>
-                            <th style= "width:190px">Credit Rating</th>
-                            <th style= "width:190px"># Aircraft</th>
+                            <th style= "width:350px">Lessee</th>
+                            <th style= "width:330px">Country</th>
+                            <th style= "width:240px">Credit Rating</th>
+                            <th style= "width:220px"># Aircraft</th>
                             
                         
                         </tr>
@@ -33,16 +33,16 @@
 
                         <% for (let i=0; i < lessee.length; i++){ %>
                         <tr>
-                            <td style= "width:250px"><a href="/lessee/<%=lessee[i].id%>"><%=lessee[i].name%></a></td>
-                            <td style= "width:200px"><%=lessee[i].country%></td>
-                            <td style= "width:190px"><%=lessee[i].credit_rating%></td>
+                            <td style= "width:350px"><a href="/lessee/<%=lessee[i].id%>"><%=lessee[i].name%></a></td>
+                            <td style= "width:330px"><%=lessee[i].country%></td>
+                            <td style= "width:240px"><%=lessee[i].credit_rating%></td>
                             <% let aircraftCount =0 %>
                             <% for (let j=0; j < aircraft.length; j++){ %>
                                 <% if( String(aircraft[j].lessee._id) == String(lessee[i]._id) ){ %>
                                     <% aircraftCount += 1%>
                                 <%} %>
                             <% } %>
-                            <td style= "width:190px"><%=aircraftCount%></td>
+                            <td style= "width:220px"><%=aircraftCount%></td>
                         </tr>
                         <% } %>
                     </tbody>

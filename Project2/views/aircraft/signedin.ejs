@@ -32,10 +32,10 @@
                 <table id="allAircraftTable" style="width:100%">
                     <thead>
                         <tr>
-                            <th style= "width:120px"><a href="/aircraft/new">MSN +</a></th>
-                            <th style= "width:280px">Lessee</th>
-                            <th style= "width:190px">Status</th>
-                            <th style= "width:190px">Sub Status</th>
+                            <th style= "width:200px"><a href="/aircraft/new">MSN +</a></th>
+                            <th style= "width:350px">Lessee</th>
+                            <th style= "width:300px">Status</th>
+                            <th style= "width:300px">Sub Status</th>
                             <th colspan="2">Action</div></th>
                         
                         </tr>
@@ -44,12 +44,12 @@
 
                         <% for (let i=0; i < aircraft.length; i++){ %>
                         <tr>
-                            <td style= "width:120px"><a href="/aircraft/<%=aircraft[i].id%>"><%=aircraft[i].msn%></a></td>
-                            <td style= "width:280px">
+                            <td style= "width:200px"><a href="/aircraft/<%=aircraft[i].id%>"><%=aircraft[i].msn%></a></td>
+                            <td style= "width:350px">
                                 <% if (aircraft[i].lessee) { %> <%=aircraft[i].lessee.name%> <% } %>
                             </td>
-                            <td style= "width:190px"><%=aircraft[i].lease.status%></td>
-                            <td style= "width:190px"><%=aircraft[i].lease.sub_status%></td>
+                            <td style= "width:300px"><%=aircraft[i].lease.status%></td>
+                            <td style= "width:300px"><%=aircraft[i].lease.sub_status%></td>
                             <td><a href="/aircraft/<%=aircraft[i].id%>/edit" class="button"><i class="material-icons">edit</i></a></td>
                             <td>
                                 <form action="/aircraft/<%=aircraft[i].id%>?_method=DELETE" method="POST">

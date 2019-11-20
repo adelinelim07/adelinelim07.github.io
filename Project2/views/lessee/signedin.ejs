@@ -35,10 +35,10 @@
                 <table id="allAircraftTable" style="width:100%">
                     <thead>
                         <tr>
-                            <th style= "width:250px"><a href="/lessee/new">Lessee +</a></th>
-                            <th style= "width:200px">Country</th>
-                            <th style= "width:190px">Credit Rating</th>
-                            <th style= "width:190px"># Aircraft</th>
+                            <th style= "width:300px"><a href="/lessee/new">Lessee +</a></th>
+                            <th style= "width:300px">Country</th>
+                            <th style= "width:220px">Credit Rating</th>
+                            <th style= "width:220px"># Aircraft</th>
                             <th colspan="2">Action</div></th>
                             
                         
@@ -47,16 +47,16 @@
                     <tbody>
                         <% for (let i=0; i < lessee.length; i++){ %>
                         <tr>
-                            <td style= "width:250px"><a href="/lessee/<%=lessee[i].id%>"><%=lessee[i].name%></a></td>
-                            <td style= "width:200px"><%=lessee[i].country%></td>
-                            <td style= "width:190px"><%=lessee[i].credit_rating%></td>
+                            <td style= "width:300px"><a href="/lessee/<%=lessee[i].id%>"><%=lessee[i].name%></a></td>
+                            <td style= "width:300px"><%=lessee[i].country%></td>
+                            <td style= "width:220px"><%=lessee[i].credit_rating%></td>
                             <% let aircraftCount =0 %>
                             <% for (let j=0; j < aircraft.length; j++){ %>
                                 <% if( String(aircraft[j].lessee._id) == String(lessee[i]._id) ){ %>
                                     <% aircraftCount += 1%>
                                 <%} %>
                             <% } %>
-                            <td style= "width:190px"><%=aircraftCount%></td>
+                            <td style= "width:220px"><%=aircraftCount%></td>
                             <td><a href="/lessee/<%=lessee[i].id%>/edit" class="button"><i class="material-icons">edit</i></a></td>
                             <td>
                                 <form action="/lessee/<%=lessee[i].id%>?_method=DELETE" method="POST">
