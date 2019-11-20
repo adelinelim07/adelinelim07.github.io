@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Lessee = require("../models/lessee.js");
+const Aircraft = require("../models/aircraft.js");
 
 const isAuthenticated = (req, res, next) => {
   if (req.session.currentUser) {
@@ -18,9 +19,12 @@ router.get('/', (req, res)=>{
           if (error) console.error(err.message);
 
           if(allLessee){
+            Aircraft.find({},(err,allAircraft)=>{
               res.render('lessee/index.ejs',{
                   lessee: allLessee,
+                  aircraft: allAircraft,
                   currentUser: req.session.currentUser
+            })
           });
       }
   });
@@ -34,9 +38,12 @@ router.get('/signedin', isAuthenticated, (req, res)=>{
           if (error) console.error(err.message);
 
           if(allLessee){
+            Aircraft.find({},(err,allAircraft)=>{
               res.render('lessee/signedin.ejs',{
                   lessee: allLessee,
+                  aircraft: allAircraft,
                   currentUser: req.session.currentUser
+              })
           });
       }
   });

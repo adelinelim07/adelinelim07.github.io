@@ -140,6 +140,9 @@ function plotHBarChart(inputDataArray,labelsArray,canvasID){
             xAxes: [{
                 gridLines: {
                     offsetGridLines: true
+                }, 
+                ticks: {
+                    suggestedMin: 0
                 }
             }]
         }

@@ -75,8 +75,14 @@ router.post('/', (req, res)=>{
 
 router.delete('/:id', (req, res)=>{
     Aircraft.findByIdAndRemove(req.params.id, (err, data)=>{
-        res.redirect('/aircraft/signedin');//redirect back to main Aircraft page
-    });
+        console.log(req.params.id)
+        // Lessee.findByIdAndUpdate(
+        //     req.body.lessee,
+        //     { $pull: {"aircraft": req.params.id }},
+        //     (err, updatedLessee)=>{
+                res.redirect('/aircraft/signedin');//redirect back to main Aircraft page
+            // })
+    })
 });
 
 router.get('/:id/edit', (req, res)=>{
@@ -106,30 +112,29 @@ router.get('/:id', (req, res)=>{
     });
 });
 
-router.put('/:id', (req, res)=>{
-    Aircraft.findByIdAndUpdate(req.params.id, req.body, (err, updatedModel)=>{
-        res.redirect('/aircraft/signedin');
-    });
+// router.put('/:id', (req, res)=>{
+//     Aircraft.findByIdAndUpdate(req.params.id, req.body, (err, updatedModel)=>{
+//         res.redirect('/aircraft/signedin');
+//     });
 
-});
+// });
 
-// router.put('/:id', (req,res)=>{
-//     Aircraft.findById(req.params.id)
-//     .populate('lessee')
-//     .exec(function(err, existingModel){
-//         if(err){
-//             console.log(err);
-//         } else {
-            
-//             console.log(existingModel.lessee.id);
-//             console.log(existingModel._id)
-//             Lessee.findByIdAndUpdate(
-//                  existingModel.lessee._id,
-//                  { $pull: {"aircraft": existingModel._id}}
-//             )
-//         }
-//     })
-// })
+router.put('/:id', (req,res)=>{
+    Aircraft.findById(req.params.id)
+    .populate('lessee')
+    .exec(function(err, existingModel){
+        if(err){
+            console.log(err);
+        } else {
+            console.log(existingModel.lessee.id);
+            console.log(existingModel._id)
+            Lessee.findByIdAndUpdate(
+                 existingModel.lessee._id,
+                 { $pull: {"aircraft": existingModel._id}}
+            )
+        }
+    })
+})
 
 
 module.exports = router;
