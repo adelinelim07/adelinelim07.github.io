@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "dependencies": {
-    "bcrypt": "^3.0.6",
+    "bcrypt": "^5.0.0",
     "chart.js": "^2.9.2",
     "dotenv": "^8.2.0",
     "ejs": "^2.7.2",
