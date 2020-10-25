@@ -233,10 +233,14 @@ $(() => {
 // GET NEWS API
 ///////////////////////////////////////////////////////////////////////////
 // Src API: https://newsapi.org/v2/everything?q=${topic}&apiKey=16eb9fb697714b3ca743394665a59dc2
+    
+// Src API: https://gnews.io/api/v4/search?q=example&token=API-Token
+// Token: b0560960d9b654440e7db97d8fd1ef0a
     let newsTitleArray = [];
     var topic = "airlines";
-    let urlWithNewsTopic = `https://newsapi.org/v2/everything?q=${topic}&sortBy=publishedAt&apiKey=16eb9fb697714b3ca743394665a59dc2`;
+//    let urlWithNewsTopic = `https://newsapi.org/v2/everything?q=${topic}&sortBy=publishedAt&apiKey=16eb9fb697714b3ca743394665a59dc2`;
     
+    let urlWithNewsTopic = `https://gnews.io/api/v4/search?q=${topic}&token=b0560960d9b654440e7db97d8fd1ef0a`;
     $.ajax({
         url: urlWithNewsTopic
     }).then(
