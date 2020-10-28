@@ -1,3 +1,11 @@
 * {
 	font-family: 'Montserrat', sans-serif;
 }
+
+body {
+  	background-image: url("Ade_Fuji.jpg"), linear-gradient(rgba(6,78,150,0.3),rgba(6,78,150,0.3));
+  	background-position: center;
+  	background-repeat: no-repeat;
+  	background-size: cover;
+  	background-blend-mode: overlay;
+}
