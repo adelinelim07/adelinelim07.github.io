@@ -86,6 +86,10 @@ body, html {
     font-size: 20px;
 }
 
+.writeup > p {
+    text-align:justify
+}
+
 .writeup > p > a {
     text-decoration: none;
     color: #f78733;
