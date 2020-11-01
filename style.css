@@ -124,6 +124,17 @@ body, html {
   border-radius: 5px;
 }
 
+.button:hover {
+  background-color: #41b3a3;
+  margin: 5px;
+  padding: 3px;
+  font-size: 24px;
+  display: block;
+  color: #394263;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+}
 
 
 
