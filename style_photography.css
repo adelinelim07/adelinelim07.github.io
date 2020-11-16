@@ -188,7 +188,7 @@ body, html {
   
   /* Add a grey background color on mouse-over */
   .btn:hover {
-    background-color: #ddd;
+    background-color: rgba(247,135,51,0.9);
   }
   
   /* Add a dark background color to the active button */
