@@ -162,9 +162,9 @@ body, html {
   
   /* Content */
   .content {
-    border-radius: 8px;
+    border-radius: 4px;
     background-color: black;
-    padding: 12px;
+    padding: 8px;
     color:white;
     font-family: 'Open Sans Condensed', sans-serif;
   }
