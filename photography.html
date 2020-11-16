@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Adeline's photos</title>
+    <link rel="stylesheet" type="text/css" href="style_photography.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="photography.js"></script>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="bg">
+      <nav class="floating-menu">
+        <a href="./index.html" title="Home" class="button"
+          ><i class="material-icons">home</i></a
+        >
+        <a href="./profile.html" title="About Adeline" class="button"
+          ><i class="material-icons">person</i></a
+        >
+        <a href="./portfolio.html" title="Portfolio" class="button"
+          ><i class="material-icons">work</i></a
+        >
+        <a href="./photography.html" title="Photography" class="button"
+          ><i class="material-icons">photo_album</i></a
+        >
+        <a href="./contactpage.html" title="Contact Adeline" class="currentPageButton"
+          ><i class="material-icons">email</i></a
+        >
+      </nav>
+
+      <div class="pageWrapper">
+        <div class="topHeader">
+            <div class="mainTitle">Adeline</div>
+            <div class="subTitle">'s photos</div>
+        </div>
+
+        <div class="photo">
+
+        <div id="myBtnContainer">
+            <button class="btn active" onclick="filterSelection('all')"> Show all</button>
+            <button class="btn" onclick="filterSelection('wildlife')"> Wildlife</button>
+            <button class="btn" onclick="filterSelection('drone')"> Drone</button>
+            <button class="btn" onclick="filterSelection('mountain')"> Mountain</button>
+          </div>
+          
+          <!-- Portfolio Gallery Grid -->
+          <div class="row">
+            <div class="column wildlife">
+              <div class="content">
+                <img src="./photos/wildlife/maldives1.jpg" alt="Wildlife" style="width:100%">
+                <p>#Anemonefish #Snorkelling #Maldives</p>
+              </div>
+            </div>
+            <div class="column wildlife">
+              <div class="content">
+                <img src="./photos/wildlife/maldives2.jpg" alt="Wildlife" style="width:100%">
+                <p>#HawksbillSeaTurtle #Snorkelling #Maldives</p>
+              </div>
+            </div>
+            <div class="column wildlife">
+              <div class="content">
+                <img src="./photos/wildlife/maldives3.jpg" alt="Wildlife" style="width:100%">
+                <p>#SchoolOfFish #Snorkelling #Maldives</p>
+              </div>
+            </div>
+          
+            
+            <div class="column drone">
+              <div class="content">
+                <img src="./photos/drone/maldives.jpg" alt="Drone" style="width:100%">
+                <p>#ClubMed #Maldives #DjiMavicPro</p>
+              </div>
+            </div>
+          
+            <div class="column mountain">
+              <div class="content">
+                <img src="./photos/mountain/montblanc.jpg" alt="Mountain" style="width:100%">
+                <p>#TourDuMontBlanc</p>
+              </div>
+            </div>
+            <div class="column mountain">
+              <div class="content">
+                <img src="./photos/mountain/montblanc2.jpg" alt="Mountain" style="width:100%">
+                <p>#RicolaView #TourDuMontBlanc #Spring</p>
+              </div>
+            </div>
+            <div class="column mountain">
+              <div class="content">
+                <img src="./photos/mountain/kazakhstan4.jpg" alt="Mountain" style="width:100%">
+                <p>#Kazakhstan #Almaty #PineTrees</p>
+              </div>
+            </div>
+          <!-- END GRID -->
+          </div>
+        </div>
+
+
+
+
+
+
+        
+      </div>
+    </div>
+  </body>
+</html>
+
+<!--
+		<ul>
+			<li><a href="./Project1/index.html">Project 1: Simple Dashboard </a></li>
+
+			<li>Project 2 </li>
+
+			<li>Project 3 </li>
+
+		</ul>	
+-->
