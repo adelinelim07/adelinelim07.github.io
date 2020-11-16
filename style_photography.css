@@ -149,7 +149,7 @@ body, html {
   /* Create three equal columns that floats next to each other */
   .column {
     float: left;
-    width: 33.33%;
+    width: 45%;
     display: none; /* Hide columns by default */
   }
   
