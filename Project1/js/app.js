@@ -153,6 +153,7 @@ $(() => {
                     singleRatesArray=[];
                 }
                 console.log(ratesArray);
+                console.log(ratesArray[0][ratesArray.length-1]);
                 plotChart(quoteCurrency,datesArray,ratesArray,'fxChart');
                 plotAlert(quoteCurrency,datesArray,ratesArray);
             }
@@ -165,8 +166,8 @@ $(() => {
 // FUNCTION TO TABULATE ALERTS
 ///////////////////////////////////////////////////////////////////////////
 function plotAlert(quoteCurrency,datesArray,ratesArray) {
-    var change =0;
     console.log(ratesArray[0][ratesArray.length-1]);
+    var change =0;
     for (let i=0; i< quoteCurrency.length; i++){
         
 
