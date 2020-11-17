@@ -57,9 +57,9 @@ function plotChart(labelArray,x,yArray,chartID) {
 ///////////////////////////////////////////////////////////////////////////
 function plotAlert(quoteCurrency,datesArray,ratesArray) {
     var change =0;
-
+    console.log(ratesArray[0][ratesArray.length-1]);
     for (let i=0; i< quoteCurrency.length; i++){
-        console.log(ratesArray[0][ratesArray.length-1]);
+        
 
         change= ((ratesArray[i][datesArray.length-2]/ratesArray[i][datesArray.length-1])-1)*100;
         
