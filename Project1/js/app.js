@@ -153,7 +153,7 @@ $(() => {
                     singleRatesArray=[];
                 }
                 console.log(ratesArray);
-                console.log(ratesArray[0][ratesArray.length-1]);
+                console.log(ratesArray[0][ratesArray[0].length-1]);
                 plotChart(quoteCurrency,datesArray,ratesArray,'fxChart');
                 plotAlert(quoteCurrency,datesArray,ratesArray);
             }
@@ -174,7 +174,7 @@ function plotAlert(quoteCurrency,datesArray,ratesArray) {
         change= ((ratesArray[i][datesArray.length-2]/ratesArray[i][datesArray.length-1])-1)*100;
         
         if(change<0){
-            var fxLine = `<tr><td>${quoteCurrency[i]}</td><td>${Number(ratesArray[i][ratesArray.length-1]).toPrecision(3)}</td><td style="color:red">&#9660</td></tr>`;
+            var fxLine = `<tr><td>${quoteCurrency[i]}</td><td>${Number(ratesArray[i][ratesArray[i].length-1]).toPrecision(3)}</td><td style="color:red">&#9660</td></tr>`;
             $('#fx-numbers').append(fxLine);
             if (change <-0.5){
                 var momLine = `<tr><td>${quoteCurrency[i]}</td><td style="color:red">${Number(change).toPrecision(2)}%</td></tr>`;
@@ -182,7 +182,7 @@ function plotAlert(quoteCurrency,datesArray,ratesArray) {
                 setTimeout(function(){alert(`Depreciation of ${quoteCurrency[i]} against USD exceeded threshold of 0.5%!`);},1000);
             }
         } else {
-            var fxLine = `<tr><td>${quoteCurrency[i]}</td><td>${Number(ratesArray[i][ratesArray.length-1]).toPrecision(3)}</td><td style="color:green">&#9650</td></tr>`;
+            var fxLine = `<tr><td>${quoteCurrency[i]}</td><td>${Number(ratesArray[i][ratesArray[i].length-1]).toPrecision(3)}</td><td style="color:green">&#9650</td></tr>`;
             $('#fx-numbers').append(fxLine);
             if (change>0.5){
                 var momLine = `<tr><td>${quoteCurrency[i]}</td><td style="color:green">${Number(change).toPrecision(2)}%</td></tr>`;
