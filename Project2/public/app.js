@@ -63,7 +63,7 @@ function plotAlert(quoteCurrency,datesArray,ratesArray) {
         change= ((ratesArray[i][datesArray.length-2]/ratesArray[i][datesArray.length-1])-1)*100;
         
         if(change<0){
-            var fxLine = `<tr><td>${quoteCurrency[i]}</td><td>${Number(ratesArray[i][ratesArray.length-1]).toPrecision(3)}</td><td style="color:red">&#9660</td></tr>`;
+            var fxLine = `<tr><td>${quoteCurrency[i]}</td><td>${Number(ratesArray[i][ratesArray[i].length-1]).toPrecision(3)}</td><td style="color:red">&#9660</td></tr>`;
             $('#fx-numbers').append(fxLine);
             if (change <-0.5){
                 var momLine = `<tr><td>${quoteCurrency[i]}</td><td style="color:red">${Number(change).toPrecision(2)}%</td></tr>`;
@@ -71,7 +71,7 @@ function plotAlert(quoteCurrency,datesArray,ratesArray) {
                 setTimeout(function(){alert(`Depreciation of ${quoteCurrency[i]} against USD exceeded threshold of 0.5%!`);},1000);
             }
         } else {
-            var fxLine = `<tr><td>${quoteCurrency[i]}</td><td>${Number(ratesArray[i][ratesArray.length-1]).toPrecision(3)}</td><td style="color:green">&#9650</td></tr>`;
+            var fxLine = `<tr><td>${quoteCurrency[i]}</td><td>${Number(ratesArray[i][ratesArray[i].length-1]).toPrecision(3)}</td><td style="color:green">&#9650</td></tr>`;
             $('#fx-numbers').append(fxLine);
             if (change>0.5){
                 var momLine = `<tr><td>${quoteCurrency[i]}</td><td style="color:green">${Number(change).toPrecision(2)}%</td></tr>`;
@@ -233,10 +233,14 @@ $(() => {
 // GET NEWS API
 ///////////////////////////////////////////////////////////////////////////
 // Src API: https://newsapi.org/v2/everything?q=${topic}&apiKey=16eb9fb697714b3ca743394665a59dc2
+    
+// Src API: https://gnews.io/api/v4/search?q=example&token=API-Token
+// Token: b0560960d9b654440e7db97d8fd1ef0a
     let newsTitleArray = [];
     var topic = "airlines";
-    let urlWithNewsTopic = `https://newsapi.org/v2/everything?q=${topic}&sortBy=publishedAt&apiKey=16eb9fb697714b3ca743394665a59dc2`;
+//    let urlWithNewsTopic = `https://newsapi.org/v2/everything?q=${topic}&sortBy=publishedAt&apiKey=16eb9fb697714b3ca743394665a59dc2`;
     
+    let urlWithNewsTopic = `https://gnews.io/api/v4/search?q=${topic}&token=b0560960d9b654440e7db97d8fd1ef0a`;
     $.ajax({
         url: urlWithNewsTopic
     }).then(
