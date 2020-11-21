@@ -95,7 +95,7 @@ body, html {
 .column {
   float: left;
   width: 30%;
-  height: 55vh;
+  height: 420px;
   background-color: #14213D;
   margin: 10px;
   border-radius: 10px;
